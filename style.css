@@ -1,7 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --color-page-background: #000000;
+    --color-text: #ffe600;
+    --color-link: #ff0000;
+}
 body{
     font-family: Arial, sans-serif;
     margin: 20px;
-    background-color: #f4f4f4;
+    background-color: var(--color-page-background);
+    display: flex;
+}
+@font-face {
+    font-family:'OBT';
+    src: url('../DGX-YE.github.io/font/OBT.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family:'zh-CN';
+    src: url('../DGX-YE.github.io/font/zh-CN.ttf') format('truetype');
+    font-weight: bold;
 }
 h1 {
     color: #333;

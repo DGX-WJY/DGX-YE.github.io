@@ -1,50 +1,169 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>歪益·我的博客</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Yehack Blog</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/tools.css">
 </head>
-    <body>
-        <!-- 渲染界面 -->
-        <div class="bg-layer"></div>
-        <div class="rain-layer" id="rainLayer"></div>
-        <div class="vigenette-layer"></div>
-        <!-- 下方界面 -->
-         <header class="glass-nav">
-            <div class="nav-inner">
-                <a href="index.html" class="logo">歪益<span>.</span></a>
-                <nav>
-                    <a href="index.html">博客</a>
-                    <a href="../view/about.html">关于</a>
-                    <a href="../view/articles.html">文章</a>
-                    <a href="../view/tools.html">工具</a>
-                </nav>
-            </div>
-         </header>
-         <main>
-            <section class="hero glass-card">
-                <div class="hero-text">
-                    <p class="subtitle">歪益·我的博客</p>
-                    <h1>欢迎来到我的博客，<br>这都被你发现了…</h1>
-                    <p class="desc">在这里，有想法，有分享。</p>
-                    <a href="../view/articles.html" class="btn">查看文章</a>
+<body>
+    <!-- 固定背景层 -->
+    <div class="bg-layer">
+        <svg class="bg-base" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#0a0e1a;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#111827;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+                </linearGradient>
+                <radialGradient id="glow1" cx="20%" cy="30%" r="60%">
+                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.15" />
+                    <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+                </radialGradient>
+                <radialGradient id="glow2" cx="80%" cy="70%" r="50%">
+                    <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:0.12" />
+                    <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0" />
+                </radialGradient>
+                <radialGradient id="glow3" cx="50%" cy="50%" r="70%">
+                    <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.08" />
+                    <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0" />
+                </radialGradient>
+                <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.6"/>
+                </pattern>
+            </defs>
+            <rect width="1920" height="1080" fill="url(#grad1)"/>
+            <rect width="1920" height="1080" fill="url(#glow1)"/>
+            <rect width="1920" height="1080" fill="url(#glow2)"/>
+            <rect width="1920" height="1080" fill="url(#glow3)"/>
+            <rect width="1920" height="1080" fill="url(#grid)"/>
+            <g opacity="0.15" stroke="#3b82f6" stroke-width="1" fill="none">
+                <path d="M0 200 Q480 150 960 200 T1920 200"/>
+                <path d="M0 400 Q480 450 960 400 T1920 400"/>
+                <path d="M0 600 Q480 550 960 600 T1920 600"/>
+                <path d="M0 800 Q480 850 960 800 T1920 800"/>
+            </g>
+        </svg>
+    </div>
+
+    <!-- 动态动画层 -->
+    <div class="animate-layer">
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+        <div class="grid-flow"></div>
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+    </div>
+
+    <!-- 页面转场遮罩 -->
+    <div class="transition-overlay" id="transitionOverlay"></div>
+
+    <!-- 主容器 -->
+    <div class="app">
+        <!-- 顶部导航栏 -->
+        <header class="navbar">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="image/yehack.png" alt="logo" class="logo-img">
+                    <span class="logo-text">Yehack</span>
                 </div>
-            </section>
-            <section class="posts">
-                <h2 class="section-title">最新文章</h2>
-                <div class="post-grid" id="postGrid"></div>
-            </section>
-            <section class="intro glass-card">
-                <h2>关于这里</h2>
-                <p>这是一个个人博客，记录了我的学习、生活和一些有趣的想法。希望你能在这里找到有价值的内容。</p>
-                <a href="../view/about.html" class="btn">了解更多</a>
-            </section>
-         </main>
-         <footer class="glass-nav footer">
-            <p>&copy; 2024 My Website. All rights reserved.</p>
-         </footer>
-         <script src="../js/style.js"></script>
-    </body>
+            </div>
+
+            <nav class="nav-center">
+                <a href="#" class="nav-link active" data-page="home">
+                    <img src="image/icon-home.svg" alt="">
+                    <span>首页</span>
+                </a>
+                <a href="#" class="nav-link" data-page="about">
+                    <img src="image/icon-about.svg" alt="">
+                    <span>关于我</span>
+                </a>
+                <a href="#" class="nav-link" data-page="articles">
+                    <img src="image/icon-articles.svg" alt="">
+                    <span>文章</span>
+                </a>
+                <a href="#" class="nav-link" data-page="tools">
+                    <img src="image/icon-tools.svg" alt="">
+                    <span>工具</span>
+                </a>
+            </nav>
+
+            <div class="nav-right">
+                <button class="lang-toggle" id="langToggle" title="切换语言">
+                    <img src="image/icon-lang.svg" alt="">
+                    <span class="lang-label" data-no-translate>EN</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- 装饰边框 -->
+        <div class="corner-decoration tl">
+            <svg viewBox="0 0 100 100" class="deco-svg">
+                <defs>
+                    <linearGradient id="decoTl" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <line x1="0" y1="0" x2="35" y2="0" stroke="url(#decoTl)" stroke-width="2"/>
+                <line x1="0" y1="0" x2="0" y2="35" stroke="url(#decoTl)" stroke-width="2"/>
+                <circle cx="0" cy="0" r="4" fill="#3b82f6"/>
+            </svg>
+        </div>
+        <div class="corner-decoration tr">
+            <svg viewBox="0 0 100 100" class="deco-svg">
+                <defs>
+                    <linearGradient id="decoTr" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <line x1="100" y1="0" x2="65" y2="0" stroke="url(#decoTr)" stroke-width="2"/>
+                <line x1="100" y1="0" x2="100" y2="35" stroke="url(#decoTr)" stroke-width="2"/>
+                <circle cx="100" cy="0" r="4" fill="#8b5cf6"/>
+            </svg>
+        </div>
+        <div class="corner-decoration bl">
+            <svg viewBox="0 0 100 100" class="deco-svg">
+                <defs>
+                    <linearGradient id="decoBl" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <line x1="0" y1="100" x2="35" y2="100" stroke="url(#decoBl)" stroke-width="2"/>
+                <line x1="0" y1="100" x2="0" y2="65" stroke="url(#decoBl)" stroke-width="2"/>
+                <circle cx="0" cy="100" r="4" fill="#06b6d4"/>
+            </svg>
+        </div>
+        <div class="corner-decoration br">
+            <svg viewBox="0 0 100 100" class="deco-svg">
+                <defs>
+                    <linearGradient id="decoBr" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.9" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                    </linearGradient>
+                </defs>
+                <line x1="100" y1="100" x2="65" y2="100" stroke="url(#decoBr)" stroke-width="2"/>
+                <line x1="100" y1="100" x2="100" y2="65" stroke="url(#decoBr)" stroke-width="2"/>
+                <circle cx="100" cy="100" r="4" fill="#3b82f6"/>
+            </svg>
+        </div>
+
+        <!-- 内容容器（由 SPA 路由动态填充） -->
+        <main class="content" id="app"></main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2026 Yehack Blog. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="js/tools.js"></script>
+    <script src="js/index.js"></script>
+</body>
 </html>

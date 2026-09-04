@@ -1,39 +1,108 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>文章 · 歪益</title>
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-  <div class="bg-layer"></div>
-  <div class="rain-layer" id="rainLayer"></div>
-  <div class="vignette-layer"></div>
-
-  <header class="glass-nav">
-    <div class="nav-inner">
-      <a href="../index.html" class="logo">歪益<span>.</span></a>
-      <nav>
-        <a href="../index.html">首页</a>
-        <a href="../view/articles.html">文章</a>
-        <a href="../view/about.html">关于</a>
-        <a href="../view/tools.html" class="active">工具</a>
-      </nav>
+<section class="page tools-page active">
+    <div class="page-header">
+        <h2>实用工具</h2>
+        <p>在线小工具集合，提升你的开发效率</p>
     </div>
-  </header>
-  <main>
-    <section class="page-head glass-card">
-      <h1>工具</h1>
-      <p class="desc">雨落成诗，字字温柔。</p>
-    </section>
-    <section class="posts full">
-      <div class="post-grid" id="postGridFull"></div>
-    </section>
-  </main>
-  <footer class="glass-nav footer">
-    <p>&copy; 2024 My Website. All rights reserved.</p>
-  </footer>
-    <script src="../js/styles.js"></script>
-</body>
-</html>
+
+    <div class="card-list tools-list">
+        <!-- JSON 格式化 -->
+        <div class="card-item tool-card">
+            <h3>JSON 格式化工具</h3>
+            <p>快速格式化和校验 JSON 数据，支持压缩、美化、错误定位</p>
+            <div class="tool-area">
+                <textarea class="tool-input" placeholder='输入 JSON，如 {"name":"test"}'></textarea>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary btn-sm" data-action="json-format">格式化</button>
+                    <button class="btn btn-outline btn-sm" data-action="json-compress">压缩</button>
+                    <button class="btn btn-outline btn-sm" data-action="json-clear">清空</button>
+                </div>
+                <pre class="tool-output"></pre>
+            </div>
+        </div>
+
+        <!-- Base64 编解码 -->
+        <div class="card-item tool-card">
+            <h3>Base64 编解码</h3>
+            <p>快速进行 Base64 编码和解码，支持 UTF-8 字符</p>
+            <div class="tool-area">
+                <textarea class="tool-input" placeholder="输入待编码/解码的内容"></textarea>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary btn-sm" data-action="b64-encode">编码</button>
+                    <button class="btn btn-outline btn-sm" data-action="b64-decode">解码</button>
+                    <button class="btn btn-outline btn-sm" data-action="b64-clear">清空</button>
+                </div>
+                <pre class="tool-output"></pre>
+            </div>
+        </div>
+
+        <!-- URL 编解码 -->
+        <div class="card-item tool-card">
+            <h3>URL 编解码</h3>
+            <p>对 URL 进行编码和解码，处理特殊字符</p>
+            <div class="tool-area">
+                <textarea class="tool-input" placeholder="输入 URL 或包含特殊字符的文本"></textarea>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary btn-sm" data-action="url-encode">编码</button>
+                    <button class="btn btn-outline btn-sm" data-action="url-decode">解码</button>
+                    <button class="btn btn-outline btn-sm" data-action="url-clear">清空</button>
+                </div>
+                <pre class="tool-output"></pre>
+            </div>
+        </div>
+
+        <!-- 时间戳转换 -->
+        <div class="card-item tool-card">
+            <h3>时间戳转换</h3>
+            <p>Unix 时间戳与日期时间互转，支持毫秒级精度</p>
+            <div class="tool-area">
+                <div class="timestamp-inputs">
+                    <input type="number" class="tool-input ts-input" placeholder="Unix 时间戳（如 1700000000）">
+                    <span class="ts-sep">⇄</span>
+                    <input type="text" class="tool-input ts-input" placeholder="日期（如 2026-09-04 12:00:00）">
+                </div>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary btn-sm" data-action="ts-now">当前时间</button>
+                    <button class="btn btn-outline btn-sm" data-action="ts-to-date">时间戳→日期</button>
+                    <button class="btn btn-outline btn-sm" data-action="ts-to-ts">日期→时间戳</button>
+                </div>
+                <div class="tool-output"></div>
+            </div>
+        </div>
+
+        <!-- 正则测试 -->
+        <div class="card-item tool-card">
+            <h3>正则表达式测试</h3>
+            <p>实时测试正则表达式匹配结果</p>
+            <div class="tool-area">
+                <input type="text" class="tool-input regex-input" placeholder="输入正则表达式（如 \d+）">
+                <textarea class="tool-input regex-test" placeholder="输入测试文本"></textarea>
+                <div class="tool-buttons">
+                    <button class="btn btn-primary btn-sm" data-action="regex-test">测试匹配</button>
+                </div>
+                <div class="tool-output regex-output"></div>
+            </div>
+        </div>
+
+        <!-- 颜色转换 -->
+        <div class="card-item tool-card">
+            <h3>颜色值转换</h3>
+            <p>HEX / RGB / HSL 颜色格式互转</p>
+            <div class="tool-area">
+                <div class="color-inputs">
+                    <input type="color" class="color-picker" value="#3b82f6">
+                    <input type="text" class="tool-input color-hex" placeholder="#3b82f6">
+                </div>
+                <div class="color-results">
+                    <div class="color-result-item">
+                        <span class="color-label">RGB</span>
+                        <code class="color-rgb">rgb(59, 130, 246)</code>
+                    </div>
+                    <div class="color-result-item">
+                        <span class="color-label">HSL</span>
+                        <code class="color-hsl">hsl(214, 91%, 60%)</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

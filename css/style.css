@@ -1,5 +1,8 @@
-/* ===== 基础重置 ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 :root {
   --ink: #eef2f7;
   --muted: rgba(238, 242, 247, 0.72);
@@ -12,21 +15,16 @@ body {
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
-  /* 平滑滚动 */
   scroll-behavior: smooth;
 }
-
-/* ===== 层级系统 ===== */
-/* 第1层：背景底图 */
 .bg-layer {
   position: fixed; inset: 0; z-index: -3;
   background-image: url("bg.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  transform: scale(1.05); /* 留余量防边缘抖动 */
+  transform: scale(1.05); 
 }
-/* 第3层：氛围暗角 + 冷色调 */
 .vignette-layer {
   position: fixed; inset: 0; z-index: -1;
   background:
@@ -34,8 +32,6 @@ body {
     linear-gradient(160deg, rgba(20,40,70,0.35), rgba(30,15,55,0.45));
   pointer-events: none;
 }
-
-/* ===== 雨幕层（第2层，JS填充雨滴） ===== */
 .rain-layer {
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none;
@@ -51,8 +47,6 @@ body {
 @keyframes fall {
   to { transform: translateY(110vh); }
 }
-
-/* ===== 毛玻璃通用类 ===== */
 .glass-card {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px) saturate(140%);
@@ -63,8 +57,6 @@ body {
     0 8px 32px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
-
-/* ===== 导航栏 ===== */
 .glass-nav {
   position: sticky; top: 0; z-index: 10;
   background: rgba(12, 18, 32, 0.45);
@@ -93,16 +85,12 @@ nav a.active::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: -6px;
   height: 2px; background: var(--accent); border-radius: 2px;
 }
-
-/* ===== 布局 ===== */
 main {
   position: relative; z-index: 1;
   max-width: 1080px; margin: 0 auto;
   padding: 40px 28px 80px;
   display: flex; flex-direction: column; gap: 40px;
 }
-
-/* ===== 英雄区 ===== */
 .hero {
   min-height: 52vh;
   display: flex; align-items: center;
@@ -110,7 +98,6 @@ main {
   position: relative;
   overflow: hidden;
 }
-/* 雨珠滑落效果 —— 关键 */
 .hero::before, .glass-card::before {
   content: "";
   position: absolute; inset: 0;
@@ -140,8 +127,6 @@ main {
   text-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 .desc { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 30px; }
-
-/* ===== 按钮 ===== */
 .btn {
   display: inline-block;
   padding: 13px 30px;
@@ -157,8 +142,6 @@ main {
   color: var(--accent); text-decoration: none; font-weight: 600;
   border-bottom: 1px solid var(--accent); padding-bottom: 2px;
 }
-
-/* ===== 文章列表 ===== */
 .section-title {
   font-size: 22px; font-weight: 700;
   margin-bottom: -12px; letter-spacing: 1px;
@@ -187,8 +170,6 @@ main {
 .post-card .date { font-size: 12px; color: rgba(238,242,247,0.5); }
 .post-card a { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600; }
 .read-more { margin-top: 14px; }
-
-/* ===== 通用内页标题区 ===== */
 .intro, .contact, .page-head, .drops-demo { padding: 36px 40px; }
 .intro.wide, .contact.wide { line-height: 1.9; font-size: 16px; color: var(--muted); }
 .page-head { padding: 40px; }
@@ -208,16 +189,12 @@ main {
 .contact .btn { align-self: flex-start; cursor: pointer; border: none; }
 
 .demo-tip { color: var(--muted); font-size: 14px; }
-
-/* ===== 页脚 ===== */
 .footer {
   position: relative; z-index: 1;
   text-align: center; padding: 24px;
   font-size: 13px; color: rgba(238,242,247,0.5);
   margin-top: 20px;
 }
-
-/* ===== 响应式 ===== */
 @media (max-width: 640px) {
   .hero { padding: 40px 28px; }
   .nav-inner { flex-direction: column; gap: 12px; }

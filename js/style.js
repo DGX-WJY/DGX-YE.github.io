@@ -42,8 +42,6 @@ const posts = [
     link: "view/articles.html"
   }
 ];
-
-/* ---------- 2. 渲染文章卡片 ---------- */
 function renderPosts(gridId, data) {
   const grid = document.getElementById(gridId);
   if (!grid) return;
@@ -57,16 +55,13 @@ function renderPosts(gridId, data) {
     </article>
   `).join("");
 }
-
-/* ---------- 3. 雨幕粒子生成 ---------- */
 function createRain() {
   const layer = document.getElementById("rainLayer");
   if (!layer) return;
-  const COUNT = window.innerWidth < 640 ? 60 : 140; // 移动端少一些
+  const COUNT = window.innerWidth < 640 ? 60 : 140; 
   for (let i = 0; i < COUNT; i++) {
     const drop = document.createElement("div");
     drop.className = "raindrop";
-    // 随机水平位置、动画时长、延迟、长度
     drop.style.left = Math.random() * 100 + "%";
     drop.style.animationDuration = 0.6 + Math.random() * 0.8 + "s";
     drop.style.animationDelay = Math.random() * 2 + "s";
@@ -75,21 +70,15 @@ function createRain() {
     layer.appendChild(drop);
   }
 }
-
-/* ---------- 4. 毛玻璃上的雨珠滑落 ----------
-   在 .glass-card 上动态生成小水珠元素，缓慢向下移动 + 随机左右摇摆，
-   到达底部后重置，模拟水滴沿玻璃滑落的真实感。 */
 function createDrops() {
   const cards = document.querySelectorAll(".glass-card");
   cards.forEach(card => {
-    const COUNT = 5; // 每张卡片雨珠数
+    const COUNT = 5;
     for (let i = 0; i < COUNT; i++) {
       const drop = document.createElement("div");
       drop.className = "drop";
-      // 初始随机位置
       drop.style.left = Math.random() * 90 + "%";
       drop.style.top = Math.random() * 60 + "%";
-      // 随机大小、时长
       const size = 4 + Math.random() * 6;
       drop.style.width = size + "px";
       drop.style.height = size * 1.1 + "px";
@@ -99,8 +88,6 @@ function createDrops() {
     }
   });
 }
-
-/* 动态注入雨珠样式（通过 JS 避免写死过多 CSS） */
 function injectDropStyles() {
   const style = document.createElement("style");
   style.textContent = `
@@ -125,17 +112,12 @@ function injectDropStyles() {
   `;
   document.head.appendChild(style);
 }
-
-/* ---------- 5. 移动端菜单 ---------- */
 function setupMobileMenu() {
-  // 小屏时 nav 已通过 CSS flex 换行；此处预留交互扩展
   const nav = document.querySelector("nav");
   if (nav && window.innerWidth <= 640) {
     nav.setAttribute("aria-expanded", "true");
   }
 }
-
-/* ---------- 6. 表单提交 ---------- */
 function onSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector("button");
@@ -148,18 +130,12 @@ function onSubmit(e) {
     e.target.reset();
   }, 2600);
 }
-// 挂载到全局供 inline onsubmit 调用
 window.onSubmit = onSubmit;
-
-/* ---------- 初始化 ---------- */
 document.addEventListener("DOMContentLoaded", () => {
   injectDropStyles();
   createRain();
   createDrops();
   setupMobileMenu();
-
-  // 主页文章（取前3篇）
   renderPosts("postGrid", posts.slice(0, 3));
-  // 文章列表页（全部）
   renderPosts("postGridFull", posts);
 });

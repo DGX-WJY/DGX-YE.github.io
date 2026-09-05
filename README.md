@@ -11,6 +11,8 @@ YE工具间|作为跨域工具（蓝图/成品）预览使用
 如果你能浏览，还请在此留言，给予部分建议，感谢！
 >You can directly visit the domain to browse.
 >If you are able to browse, please leave a message here and give some suggestions. Thank you!
+> www.yehack.com
 ------------------------
- > www.yehack.com < 
-# ↑↑↑↑↑↑
+# 网站|Web
+站点版本：0.1.1 | 当前更新状态：持续中
+>Site Version：0.1.1 | Current update status: continuously updating

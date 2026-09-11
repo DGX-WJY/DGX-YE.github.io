@@ -13,7 +13,7 @@
         about: 'view/about.html',
         articles: 'view/articles.html',
         tools: 'view/tools.html',
-        news: 'view/news.html'
+        news: 'view/index2.html'
     };
 
     const viewCache = {};

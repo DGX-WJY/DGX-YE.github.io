@@ -12,7 +12,8 @@
         home: 'view/home.html',
         about: 'view/about.html',
         articles: 'view/articles.html',
-        tools: 'view/tools.html'
+        tools: 'view/tools.html',
+        news: 'view/news.html'
     };
 
     const viewCache = {};

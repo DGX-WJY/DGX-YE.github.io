@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="yehack - 网络安全研究者的个人博客">
+    <title>yehack · 安全研究笔记</title>
+    <link rel="icon" href="/images/yehack.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="topnav" id="topnav">
+        <div class="topnav-left">
+            <img src="images/yehack.png" alt="yehack" class="topnav-logo">
+            <span class="topnav-name">yehack</span>
+        </div>
+        <div class="topnav-center">
+            <a href="index.html" class="tnav-item active" data-page="home">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>首页</span>
+            </a>
+            <a href="#posts" class="tnav-item" data-page="posts">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                <span>文章</span>
+            </a>
+            <a href="#projects" class="tnav-item" data-page="projects">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                <span>作品</span>
+            </a>
+            <a href="#about" class="tnav-item" data-page="about">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>关于</span>
+            </a>
+            <a href="#contact" class="tnav-item" data-page="contact">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>联系</span>
+            </a>
+            <a href="view/yehack.html" class="tnav-item tnav-platform">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                <span>工具平台</span>
+            </a>
+        </div>
+        <div class="topnav-right">
+            <a href="#" aria-label="GitHub" class="tsocial magnet">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+            </a>
+            <a href="#" aria-label="Twitter" class="tsocial magnet">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+            </a>
+            <a href="#" aria-label="Mail" class="tsocial magnet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+            <a href="#" aria-label="RSS" class="tsocial magnet">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main" id="main">
+        <div class="main-inner">
+
+            <!-- ============== 页面 1：首页 ============== -->
+            <section class="page page-home active" id="page-home">
+                <div class="home-hero">
+                    <div class="hero-bg-deco">
+                        <div class="gradient-orb orb-1"></div>
+                        <div class="gradient-orb orb-2"></div>
+                    </div>
+
+                    <div class="home-badge reveal stagger-1">
+                        <span class="badge-dot"></span>
+                        <span>HELLO, WORLD</span>
+                    </div>
+
+                    <h1 class="home-title reveal stagger-2">
+                        欢迎来到<span class="gradient-text">yehack</span>的<br>
+                        <span class="gradient-text-2">安全研究笔记</span>
+                    </h1>
+
+                    <p class="home-desc reveal stagger-3">
+                        这里记录着我在网络安全领域的探索、思考与总结。
+                        从 Web 漏洞挖掘到二进制逆向，从工具开发到攻防实战。
+                        愿每一篇笔记，都能点亮一个未知的角落。
+                    </p>
+
+                    <div class="home-actions reveal stagger-4">
+                        <button class="btn btn-primary btn-lg magnet go-page" data-page="posts">
+                            开始阅读
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        <button class="btn btn-ghost btn-lg magnet go-page" data-page="about">了解更多</button>
+                    </div>
+
+                    <!-- 数据概览 -->
+                    <div class="home-stats reveal stagger-5">
+                        <div class="home-stat">
+                            <div class="h-stat-num" data-target="128">0</div>
+                            <div class="h-stat-label">技术文章</div>
+                        </div>
+                        <div class="home-stat">
+                            <div class="h-stat-num" data-target="36">0</div>
+                            <div class="h-stat-label">开源项目</div>
+                        </div>
+                        <div class="home-stat">
+                            <div class="h-stat-num" data-target="15">0</div>
+                            <div class="h-stat-label">CVE 编号</div>
+                        </div>
+                        <div class="home-stat">
+                            <div class="h-stat-num" data-target="6">0</div>
+                            <div class="h-stat-label">年经验</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 终端代码块 -->
+                <div class="home-terminal reveal stagger-5">
+                    <div class="terminal-bar">
+                        <span class="term-dot" style="background:#ef4444;"></span>
+                        <span class="term-dot" style="background:#f59e0b;"></span>
+                        <span class="term-dot" style="background:#10b981;"></span>
+                        <span class="term-title">yehack@blog: ~</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="term-line"><span class="term-prompt">$</span> whoami</div>
+                        <div class="term-output">security researcher · red team · ctf player</div>
+                        <div class="term-line"><span class="term-prompt">$</span> cat skills.txt</div>
+                        <div class="term-output">web pentest | binary pwn | android rev | tool dev</div>
+                        <div class="term-line"><span class="term-prompt">$</span> ls achievements/</div>
+                        <div class="term-output">15-CVE.md  128-posts.md  36-projects.md  2x-first-place.md</div>
+                        <div class="term-line"><span class="term-prompt">$</span> <span class="term-cursor">_</span></div>
+                    </div>
+                </div>
+
+                <!-- 最新文章预览 -->
+                <div class="home-section reveal">
+                    <div class="section-head">
+                        <h3>最新文章</h3>
+                        <button class="text-link go-page magnet" data-page="posts">
+                            查看全部
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="home-post-grid">
+                        <a href="view/文档.html?type=article&id=1&from=index.html" class="home-post-card magnet">
+                            <div class="hpc-cover" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                                <span class="hpc-tag">Web 安全</span>
+                            </div>
+                            <div class="hpc-body">
+                                <h4>从零构建 Web 漏洞靶场：Nginx LuaWAF 绕过实战</h4>
+                                <p>完整解析 Nginx + Lua WAF 的规则匹配逻辑，实战演示 SQLi/XSS/RCE 多类绕过手法。</p>
+                                <div class="hpc-meta"><span>07-28</span><span>· 3.2k 阅读</span></div>
+                            </div>
+                        </a>
+                        <a href="view/文档.html?type=article&id=4&from=index.html" class="home-post-card magnet">
+                            <div class="hpc-cover" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">
+                                <span class="hpc-tag">渗透测试</span>
+                            </div>
+                            <div class="hpc-body">
+                                <h4>CVE-2025-XXXX：某企业 OA 从 SQL 注入到 RCE 全链路</h4>
+                                <p>一次完整攻防演练中，对某企业 OA 系统从外网打点到内网完全控制的全过程解析。</p>
+                                <div class="hpc-meta"><span>07-09</span><span>· 4.1k 阅读</span></div>
+                            </div>
+                        </a>
+                        <a href="view/文档.html?type=article&id=6&from=index.html" class="home-post-card magnet">
+                            <div class="hpc-cover" style="background: linear-gradient(135deg, #06b6e4, #3b82f6);">
+                                <span class="hpc-tag">内网安全</span>
+                            </div>
+                            <div class="hpc-body">
+                                <h4>红队演练：内网横向移动技术路线图（2025）</h4>
+                                <p>内网环境中，从获得立足点到域控完全控制的完整横向移动技术路线拆解与防检测策略。</p>
+                                <div class="hpc-meta"><span>06-25</span><span>· 3.6k 阅读</span></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 技术方向 -->
+                <div class="home-section reveal">
+                    <div class="section-head">
+                        <h3>技术方向</h3>
+                    </div>
+                    <div class="tech-direction-grid">
+                        <div class="tech-dir-card">
+                            <div class="tdc-icon" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                            </div>
+                            <h5>Web 安全</h5>
+                            <p>SQLi · XSS · SSTI · WAF Bypass · 代码审计</p>
+                        </div>
+                        <div class="tech-dir-card">
+                            <div class="tdc-icon" style="background: linear-gradient(135deg, #06b6e4, #10b981);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                            </div>
+                            <h5>二进制安全</h5>
+                            <p>栈溢出 ·堆利用 · ROP · 格式化字符串 · 内核</p>
+                        </div>
+                        <div class="tech-dir-card">
+                            <div class="tdc-icon" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                            </div>
+                            <h5>移动安全</h5>
+                            <p>Android 逆向 · Frida Hook · 协议分析 · 脱壳</p>
+                        </div>
+                        <div class="tech-dir-card">
+                            <div class="tdc-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                            </div>
+                            <h5>工具开发</h5>
+                            <p>Rust · Go · Python · 自动化 · PoC 批量验证</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 精选项目 -->
+                <div class="home-section reveal">
+                    <div class="section-head">
+                        <h3>精选项目</h3>
+                        <button class="text-link go-page magnet" data-page="projects">
+                            查看全部
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                    <div class="home-project-grid">
+                        <div class="home-project-card magnet">
+                            <div class="hpc-glow" style="background:#6366f1;"></div>
+                            <div class="hpc-head">
+                                <div class="hpc-icon" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                                </div>
+                                <div class="hpc-stars">⭐ 2.1k</div>
+                            </div>
+                            <h4>FastScanner</h4>
+                            <p>基于 Rust 的高性能 Web 扫描器，支持多指纹识别、漏洞 PoC 批量验证、WAF 检测。</p>
+                            <div class="hpc-tags"><span>Rust</span><span>Scanner</span><span>PoC</span></div>
+                        </div>
+                        <div class="home-project-card magnet">
+                            <div class="hpc-glow" style="background:#06b6e4;"></div>
+                            <div class="hpc-head">
+                                <div class="hpc-icon" style="background: linear-gradient(135deg, #06b6e4, #10b981);">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                                </div>
+                                <div class="hpc-stars">⭐ 956</div>
+                            </div>
+                            <h4>ProxyLab</h4>
+                            <p>可视化流量代理与分析工具，支持 HTTP/HTTPS/WebSocket 协议解析与规则引擎。</p>
+                            <div class="hpc-tags"><span>Go</span><span>Proxy</span><span>Analyzer</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 工具平台入口 -->
+                <div class="home-platform-cta reveal">
+                    <div class="hpcta-content">
+                        <h3>需要更多工具？</h3>
+                        <p>访问工具平台，获取 10+ 安全工具、漏洞案例、学习教程与资源下载。</p>
+                    </div>
+                    <a href="view/yehack.html" class="btn btn-primary btn-lg magnet">
+                        进入工具平台
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ============== 页面 2：文章 ============== -->
+            <section class="page page-posts" id="page-posts">
+                <!-- 筛选 -->
+                <div class="post-filters">
+                    <div class="filter-tags" id="filterTags">
+                        <button class="chip chip-active" data-filter="all">全部</button>
+                        <button class="chip" data-filter="web">Web 安全</button>
+                        <button class="chip" data-filter="pwn">二进制</button>
+                        <button class="chip" data-filter="tool">工具开发</button>
+                        <button class="chip" data-filter="mobile">移动安全</button>
+                        <button class="chip" data-filter="ctf">CTF</button>
+                    </div>
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" placeholder="搜索文章..." id="searchInput">
+                    </div>
+                </div>
+
+                <!-- 文章列表 -->
+                <div class="post-grid" id="postList">
+                    <article class="post-card-mini reveal" data-cat="web" data-tags="ssti flask python">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+                            <span class="pcm-tag">Web 安全</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">深入理解模板注入：从 Flask SSTI 到 RCE</h3>
+                            <p class="pcm-excerpt">从 Jinja2 基础语法出发，逐步讲解沙箱逃逸...</p>
+                            <div class="pcm-meta"><span>2026-07-28</span><span>· 15 min</span></div>
+                        </div>
+                    </article>
+
+                    <article class="post-card-mini reveal" data-cat="pwn" data-tags="rop stack overflow">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #06b6e4, #3b82f6);">
+                            <span class="pcm-tag">二进制</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">Pwn 入门：栈溢出与 ROP 链构造实战</h3>
+                            <p class="pcm-excerpt">详细讲解保护机制绕过、gadget 查找...</p>
+                            <div class="pcm-meta"><span>2026-07-20</span><span>· 22 min</span></div>
+                        </div>
+                    </article>
+
+                    <article class="post-card-mini reveal" data-cat="tool" data-tags="rust scanner">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #f59e0b, #ec4899);">
+                            <span class="pcm-tag">工具开发</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">用 Rust 编写高性能子域名爆破工具</h3>
+                            <p class="pcm-excerpt">并发模型、DNS 解析优化、字典策略设计...</p>
+                            <div class="pcm-meta"><span>2026-07-12</span><span>· 18 min</span></div>
+                        </div>
+                    </article>
+
+                    <article class="post-card-mini reveal" data-cat="mobile" data-tags="android frida">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #10b981, #06b6e4);">
+                            <span class="pcm-tag">移动安全</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">Android APP 逆向：Frida Hook 实战</h3>
+                            <p class="pcm-excerpt">加密函数定位、协议分析、壳对抗...</p>
+                            <div class="pcm-meta"><span>2026-07-05</span><span>· 25 min</span></div>
+                        </div>
+                    </article>
+
+                    <article class="post-card-mini reveal" data-cat="web" data-tags="xss csrf waf">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                            <span class="pcm-tag">Web 安全</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">WAF Bypass：XSS 与 CSRF 绕过技巧</h3>
+                            <p class="pcm-excerpt">20+ 种实战验证有效的 WAF 绕过方式...</p>
+                            <div class="pcm-meta"><span>2026-06-28</span><span>· 20 min</span></div>
+                        </div>
+                    </article>
+
+                    <article class="post-card-mini reveal" data-cat="ctf" data-tags="web misc crypto">
+                        <div class="pcm-cover" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">
+                            <span class="pcm-tag">CTF</span>
+                        </div>
+                        <div class="pcm-body">
+                            <h3 class="pcm-title">2026 某大型 CTF Write-Up 合集</h3>
+                            <p class="pcm-excerpt">Web 4 题、Pwn 3 题详细解题思路...</p>
+                            <div class="pcm-meta"><span>2026-06-20</span><span>· 45 min</span></div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- ============== 页面 3：作品 ============== -->
+            <section class="page page-projects" id="page-projects">
+                <div class="project-grid">
+                    <div class="project-card reveal">
+                        <div class="project-glow"></div>
+                        <div class="project-head">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #6366f1, #3b82f6);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="project-stars">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                                <span>2.1k</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">FastScanner</h3>
+                        <p class="project-desc">基于 Rust 的高性能 Web 扫描器，支持多指纹识别、漏洞 PoC 批量验证、WAF 检测，比同类工具快 3-5 倍。</p>
+                        <div class="project-tags">
+                            <span>Rust</span>
+                            <span>Scanner</span>
+                            <span>PoC</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn btn-ghost btn-sm magnet">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="text-link-sm magnet">
+                                文档
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-glow" style="background: #06b6e4;"></div>
+                        <div class="project-head">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #06b6e4, #10b981);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
+                            </div>
+                            <div class="project-stars">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                                <span>956</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">ProxyLab</h3>
+                        <p class="project-desc">可视化流量代理与分析工具，支持 HTTP/HTTPS/WebSocket 协议解析，内置规则引擎自动识别敏感信息与攻击载荷。</p>
+                        <div class="project-tags">
+                            <span>Go</span>
+                            <span>Proxy</span>
+                            <span>Analyzer</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn btn-ghost btn-sm magnet">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="text-link-sm magnet">
+                                文档
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-glow" style="background: #8b5cf6;"></div>
+                        <div class="project-head">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                            </div>
+                            <div class="project-stars">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                                <span>623</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">PwnKit</h3>
+                        <p class="project-desc">Pwn 题辅助工具集，集成 libc 查找、gadget 搜索、堆布局可视化、one_gadget 查询，节省调试时间 60%。</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Pwn</span>
+                            <span>Tools</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn btn-ghost btn-sm magnet">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="text-link-sm magnet">
+                                文档
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-glow" style="background: #f59e0b;"></div>
+                        <div class="project-head">
+                            <div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                                </svg>
+                            </div>
+                            <div class="project-stars">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                                <span>431</span>
+                            </div>
+                        </div>
+                        <h3 class="project-title">CryptoLab</h3>
+                        <p class="project-desc">密码学常见题型在线工具集，覆盖 RSA、AES、ECC、编码转换、频度分析，支持一步步演示推导过程，适合 CTF 新手。</p>
+                        <div class="project-tags">
+                            <span>JS</span>
+                            <span>Crypto</span>
+                            <span>Web</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="#" class="btn btn-ghost btn-sm magnet">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
+                                GitHub
+                            </a>
+                            <a href="#" class="text-link-sm magnet">
+                                试用
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============== 页面 4：关于 ============== -->
+            <section class="page page-about" id="page-about">
+                <div class="about-grid">
+                    <div class="about-main">
+                        <div class="about-hero reveal">
+                            <h3 class="about-hi">👋 你好，我是 <span class="gradient-text">yehack</span></h3>
+                            <p class="about-text">
+                                一名有着 6 年一线经验的安全研究员，目前就职于某知名安全公司红队。技术兴趣涵盖 Web 漏洞挖掘、二进制利用链构造与自动化工具开发。
+                            </p>
+                        </div>
+
+                        <div class="about-section reveal">
+                            <h4 class="section-title-sm">📚 工作经历</h4>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot" style="background: #6366f1;"></div>
+                                    <div class="timeline-content">
+                                        <div class="t-head">
+                                            <h5>红队安全研究员</h5>
+                                            <span class="t-date">2023 — 至今</span>
+                                        </div>
+                                        <p class="t-company">某头部互联网安全公司</p>
+                                        <p class="t-desc">红队基础设施建设与高级攻击技术研究，2 次获国家级演练第一。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot" style="background: #06b6e4;"></div>
+                                    <div class="timeline-content">
+                                        <div class="t-head">
+                                            <h5>渗透测试工程师</h5>
+                                            <span class="t-date">2020 — 2023</span>
+                                        </div>
+                                        <p class="t-company">某安全服务厂商</p>
+                                        <p class="t-desc">完成 50+ 客户渗透测试项目，发现高危漏洞百余项。</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot" style="background: #8b5cf6;"></div>
+                                    <div class="timeline-content">
+                                        <div class="t-head">
+                                            <h5>安全实习生</h5>
+                                            <span class="t-date">2019 — 2020</span>
+                                        </div>
+                                        <p class="t-company">某网络安全实验室</p>
+                                        <p class="t-desc">参与物联网与车联网安全课题研究。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-section reveal">
+                            <h4 class="section-title-sm">🏆 部分成就</h4>
+                            <div class="achievement-grid">
+                                <div class="ach-card">
+                                    <div class="ach-icon" style="color: #f59e0b;">🥇</div>
+                                    <div class="ach-content">
+                                        <h5>国家级攻防演练第一</h5>
+                                        <p>2024、2025 两次带领红队获得总分第一</p>
+                                    </div>
+                                </div>
+                                <div class="ach-card">
+                                    <div class="ach-icon" style="color: #ef4444;">🔓</div>
+                                    <div class="ach-content">
+                                        <h5>15+ CVE / CNVD</h5>
+                                        <p>覆盖知名厂商产品，含多个高危漏洞</p>
+                                    </div>
+                                </div>
+                                <div class="ach-card">
+                                    <div class="ach-icon" style="color: #6366f1;">🚩</div>
+                                    <div class="ach-content">
+                                        <h5>CTF 获奖 30+ 次</h5>
+                                        <p>国内一线赛事稳定前 3，国际赛事多次入围</p>
+                                    </div>
+                                </div>
+                                <div class="ach-card">
+                                    <div class="ach-icon" style="color: #06b6e4;">📝</div>
+                                    <div class="ach-content">
+                                        <h5>技术文章 128 篇</h5>
+                                        <p>累计阅读量 50 万+，被多份技术周刊精选</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 侧栏信息卡 -->
+                    <div class="about-side">
+                        <div class="side-card reveal">
+                            <h5 class="side-title">快速信息</h5>
+                            <div class="info-list">
+                                <div class="info-row">
+                                    <span class="info-label">📍 位置</span>
+                                    <span class="info-val">北京, 中国</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">💼 状态</span>
+                                    <span class="info-val status-working"><span class="s-dot"></span> 在职 · 可交流</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">🎓 学历</span>
+                                    <span class="info-val">信息安全硕士</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">🎂 年限</span>
+                                    <span class="info-val">6 年 +</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">🌍 语言</span>
+                                    <span class="info-val">中文 · 英文</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="side-card reveal">
+                            <h5 class="side-title">技术栈</h5>
+                            <div class="interest-tags">
+                                <span class="int-tag int-1">Web 安全 95%</span>
+                                <span class="int-tag int-2">二进制 85%</span>
+                                <span class="int-tag int-3">移动安全 75%</span>
+                                <span class="int-tag int-4">工具开发 90%</span>
+                                <span class="int-tag int-5">Python</span>
+                                <span class="int-tag int-6">Rust</span>
+                                <span class="int-tag int-7">Go</span>
+                            </div>
+                        </div>
+
+                        <div class="side-card side-card-cta reveal">
+                            <h5 class="side-title">想合作或交流？</h5>
+                            <p class="side-desc">欢迎通过邮件或社交平台联系，技术话题、项目合作、行业交流都可以！</p>
+                            <button class="btn btn-primary btn-sm magnet go-page" data-page="contact" style="width:100%;">
+                                联系我
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============== 页面 5：联系 ============== -->
+            <section class="page page-contact" id="page-contact">
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cName">姓名</label>
+                                    <input type="text" id="cName" placeholder="你的称呼">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cEmail">邮箱</label>
+                                    <input type="email" id="cEmail" placeholder="reply@you.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cSubject">主题</label>
+                                <input type="text" id="cSubject" placeholder="想聊点什么？">
+                            </div>
+                            <div class="form-group">
+                                <label for="cMsg">内容</label>
+                                <textarea id="cMsg" rows="4" placeholder="把你的想法写在这里..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg magnet" style="width:100%;">
+                                发送消息
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="contact-col">
+                        <div class="contact-cards">
+                            <a href="#" class="contact-card reveal magnet" style="--cc-color:#6366f1;">
+                                <div class="cc-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path>
+                                    </svg>
+                                </div>
+                                <div class="cc-body">
+                                    <h5>GitHub</h5>
+                                    <p>@yehack · 开源项目与代码</p>
+                                </div>
+                                <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="contact-card reveal magnet" style="--cc-color:#06b6e4;">
+                                <div class="cc-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+                                    </svg>
+                                </div>
+                                <div class="cc-body">
+                                    <h5>Twitter / X</h5>
+                                    <p>@yehack_ · 日常安全资讯</p>
+                                </div>
+                                <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+
+                            <a href="mailto:hello@yehack.com" class="contact-card reveal magnet" style="--cc-color:#8b5cf6;">
+                                <div class="cc-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                        <polyline points="22,6 12,13 2,6"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="cc-body">
+                                    <h5>Email</h5>
+                                    <p>hello@yehack.com · 最推荐</p>
+                                </div>
+                                <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="contact-card reveal magnet" style="--cc-color:#10b981;">
+                                <div class="cc-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path>
+                                    </svg>
+                                </div>
+                                <div class="cc-body">
+                                    <h5>Discord</h5>
+                                    <p>yehack#0001 · 技术社区</p>
+                                </div>
+                                <svg class="cc-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <div class="tz-card reveal">
+                            <div class="tz-title">🕐 当前时区</div>
+                            <div class="tz-time" id="tzTime">--:--:--</div>
+                            <div class="tz-zone">UTC+8 · 北京时间</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="js/main.js?v=4"></script>
+</body>
+</html>

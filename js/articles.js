@@ -36,7 +36,7 @@
     const readTime = Math.max(1, Math.ceil(article.content.join(' ').trim().length / 400));
     bottom.append(tags, node('span', 'read-time', `${readTime} 分钟`));
     const link = node('a', 'article-card-link');
-    link.href = `/article.html?slug=${encodeURIComponent(article.slug)}`;
+    link.href = `/articles/${encodeURIComponent(article.slug)}/`;
     link.setAttribute('aria-label', `阅读文章：${article.title}`);
     link.append(top, title, summary, bottom);
     card.append(link);
@@ -114,7 +114,7 @@
   });
 
   function loadFeed() {
-    return fetch(`/data/articles.json?_=${Date.now()}`, { cache: 'no-store' })
+    return fetch('/data/articles-index.json', { cache: 'no-cache' })
       .then((response) => {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
@@ -141,7 +141,9 @@
       .catch((error) => {
         console.error('[Articles] Could not synchronize the article index.', error);
         status.textContent = `文章同步失败：${error.message}${articles.length ? '；保留上次成功加载的文章' : ''}`;
-        if (!articles.length) list.replaceChildren(node('p', 'empty-state', '请检查网络连接后刷新页面。'));
+        if (!articles.length && !list.querySelector('.article-card')) {
+          list.replaceChildren(node('p', 'empty-state', '请检查网络连接后刷新页面。'));
+        }
       });
   }
 

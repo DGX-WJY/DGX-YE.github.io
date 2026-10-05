@@ -1,20 +1,21 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10120f">
-  <meta name="description" content="Yehack 的个人博客文章。">
-  <link rel="icon" href="/assets/brand/yehack.png"><link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/article.css">
-  <title>文章 — Yehack</title><script src="/js/site.js" defer></script><script src="/js/article.js" defer></script>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>文章链接已更新 — Yehack</title>
+  <link rel="icon" href="/assets/brand/yehack.png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script src="/js/site.js" defer></script>
+  <script>
+    const slug = new URLSearchParams(location.search).get('slug');
+    if (slug && /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+      location.replace(`/articles/${encodeURIComponent(slug)}/`);
+    }
+  </script>
 </head>
-<body data-page="articles" class="reader-page">
-  <div class="reading-progress" data-progress></div><a class="skip-link" href="#main">跳到正文</a>
-  <header class="site-header"><a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button><nav class="primary-nav" id="primary-nav" aria-label="主导航"><a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a></nav><button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换主题"><span aria-hidden="true">◐</span></button></header>
-  <main id="main" class="reader-wrap">
-    <a class="back-link" href="/articles/">← 返回文章归档</a>
-    <article class="article-reader" data-article><p class="loading-note">正在加载文章…</p></article>
-    <nav class="article-neighbors" data-neighbors aria-label="上一篇和下一篇"></nav>
-    <section class="discussion-box"><p class="eyebrow">DISCUSSION</p><h2>想继续聊聊？</h2><p>欢迎到 GitHub Discussions 留下补充、问题或不同看法。</p><a class="text-link" href="https://github.com/DGX-WJY/DGX-YE.github.io/discussions" target="_blank" rel="noopener noreferrer">前往讨论区 <span aria-hidden="true">↗</span></a></section>
-  </main>
-  <footer class="site-footer wrap"><a class="footer-brand" href="/">YEHACK / JOURNAL</a><span>BUILD SLOWLY · SHARE OPENLY</span><div><a href="/feed.xml">RSS</a><a href="https://github.com/DGX-WJY/DGX-YE.github.io" rel="noopener noreferrer">GitHub ↗</a></div></footer>
+<body data-page="articles">
+  <header class="site-header"><a class="brand" href="/"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a></header>
+  <main id="main" class="wrap not-found"><p class="eyebrow">ARTICLE LINK UPDATED</p><h1>文章已切换为<br><span>独立页面。</span></h1><p>没有找到文章标识，或浏览器不支持自动跳转。</p><a class="button button-dark" href="/articles/">打开文章归档 <span aria-hidden="true">↗</span></a></main>
 </body>
 </html>

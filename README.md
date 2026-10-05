@@ -8,7 +8,8 @@
 .
 ├── index.html               # 首页
 ├── articles/index.html      # 文章归档、搜索、标签、分类和分页
-├── article.html             # 独立文章阅读页（?slug=文章标识）
+├── articles/<slug>/         # 构建生成的独立文章 HTML 页面
+├── article.html             # 旧文章链接兼容跳转
 ├── games/index.html         # 游戏档案与推荐
 ├── tools/index.html         # 工具目录和本地交互工具
 ├── about/index.html         # 关于页
@@ -62,4 +63,4 @@
 python3 -m http.server 8000
 ```
 
-访问 `http://localhost:8000/`。编辑文章后也要同步维护 `feed.xml` 与 `sitemap.xml`。提交到 `main` 后由 GitHub Pages 发布，仓库域名配置保留在 `CNAME`。
+访问 `http://localhost:8000/`。编辑文章后运行 `node scripts/build-articles.mjs`，自动生成轻量文章索引、独立静态详情页、RSS 和站点地图。生成页面后再提交到 `main`，由 GitHub Pages 发布，仓库域名配置保留在 `CNAME`。

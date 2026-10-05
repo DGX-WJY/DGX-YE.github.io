@@ -5,10 +5,10 @@
   <url><loc>https://www.yehack.com/games/</loc></url>
   <url><loc>https://www.yehack.com/tools/</loc></url>
   <url><loc>https://www.yehack.com/about/</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=javascript-event-loop</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=css-grid-and-flexbox</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=improving-a-small-tool</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=lightweight-docker-environment</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=writing-useful-code-comments</loc></url>
-  <url><loc>https://www.yehack.com/article.html?slug=learning-a-language-in-a-weekend</loc></url>
+  <url><loc>https://www.yehack.com/articles/javascript-event-loop/</loc></url>
+  <url><loc>https://www.yehack.com/articles/css-grid-and-flexbox/</loc></url>
+  <url><loc>https://www.yehack.com/articles/improving-a-small-tool/</loc></url>
+  <url><loc>https://www.yehack.com/articles/lightweight-docker-environment/</loc></url>
+  <url><loc>https://www.yehack.com/articles/writing-useful-code-comments/</loc></url>
+  <url><loc>https://www.yehack.com/articles/learning-a-language-in-a-weekend/</loc></url>
 </urlset>

@@ -13,7 +13,7 @@
 
   async function loadRecentArticles() {
     try {
-      const response = await fetch('/data/articles.json', { cache: 'no-store' });
+      const response = await fetch('/data/articles-index.json', { cache: 'no-cache' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const feed = await response.json();
       if (!feed || !Array.isArray(feed.articles)) throw new Error('Invalid article feed');
@@ -25,7 +25,7 @@
         .slice(0, 4)
         .forEach((article) => {
           const link = element('a', 'home-article');
-          link.href = `/article.html?slug=${encodeURIComponent(article.slug)}`;
+          link.href = `/articles/${encodeURIComponent(article.slug)}/`;
           const date = element('time');
           date.dateTime = article.date;
           date.textContent = dateFormatter.format(new Date(`${article.date}T00:00:00`)).replace(/\//g, '.');

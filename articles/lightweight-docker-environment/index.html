@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10120f">
+  <meta name="description" content="减少配置噪声，让本地环境更像项目的一部分，而不是额外的工作。">
+  <link rel="canonical" href="https://www.yehack.com/articles/lightweight-docker-environment/"><link rel="icon" href="/assets/brand/yehack.png"><link rel="alternate" type="application/rss+xml" title="Yehack Journal" href="/feed.xml">
+  <link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/article.css">
+  <title>Docker 开发环境的轻量化实践 — Yehack</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Docker 开发环境的轻量化实践","description":"减少配置噪声，让本地环境更像项目的一部分，而不是额外的工作。","datePublished":"2026-05-09","author":{"@type":"Person","name":"Yehack"},"mainEntityOfPage":"https://www.yehack.com/articles/lightweight-docker-environment/"}</script>
+  <script src="/js/site.js" defer></script><script src="/js/reader.js" defer></script>
+</head>
+<body data-page="articles" class="reader-page">
+  <div class="reading-progress" data-progress></div><a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+  <a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button>
+  <nav class="primary-nav" id="primary-nav" aria-label="主导航"><a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles" aria-current="page">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a></nav>
+  <button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换主题"><span aria-hidden="true">◐</span></button>
+</header>
+  <main id="main" class="reader-wrap">
+    <a class="back-link" href="/articles/">← 返回文章归档</a>
+    <article class="article-reader">
+      <header><p class="eyebrow">工程</p><h1>Docker 开发环境的轻量化实践</h1><p class="article-summary">减少配置噪声，让本地环境更像项目的一部分，而不是额外的工作。</p>
+        <div class="article-meta"><time datetime="2026-05-09">2026年5月9日</time><span>1 分钟阅读</span><span>#Docker</span><span>#工程</span><span>#开发</span></div>
+      </header>
+      <div class="article-reader-body">
+      <p>容器化开发环境的目标，是让团队成员用一致的方式启动项目，而不是把每个基础设施都搬进 compose 文件。</p>
+      <p>先列出应用真正依赖的服务，再为它们设置明确端口、健康检查和持久化边界。开发环境里容易变化的数据，应该放在可单独清理的卷中。</p>
+      <p>镜像版本要固定，敏感配置通过环境变量或本地忽略文件注入，不要写入仓库。服务之间使用稳定的服务名通信，避免依赖某位开发者机器上的地址。</p>
+      <p>保持启动命令简短，并在 README 中写清楚首次启动、重置数据和排查日志的方法。环境是否轻量，最终看新人能否少走弯路。</p>
+      </div>
+      <div class="article-end"><button type="button" data-copy-link>复制文章链接</button><button type="button" data-print>打印 / 保存 PDF</button></div>
+    </article>
+    <nav class="article-neighbors" aria-label="上一篇和下一篇"><a class="neighbor-link neighbor-previous" href="/articles/writing-useful-code-comments/"><span>上一篇</span><strong>写给未来自己的代码注释</strong></a>
+      <a class="neighbor-link neighbor-next" href="/articles/improving-a-small-tool/"><span>下一篇</span><strong>把一个小工具做得更好用</strong></a></nav>
+    <section class="discussion-box"><p class="eyebrow">DISCUSSION</p><h2>想继续聊聊？</h2><p>欢迎到 GitHub Discussions 留下补充、问题或不同看法。</p><a class="text-link" href="https://github.com/DGX-WJY/DGX-YE.github.io/discussions" target="_blank" rel="noopener noreferrer">前往讨论区 <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer wrap"><a class="footer-brand" href="/">YEHACK / JOURNAL</a><span>BUILD SLOWLY · SHARE OPENLY</span><div><a href="/feed.xml">RSS</a><a href="https://github.com/DGX-WJY/DGX-YE.github.io" rel="noopener noreferrer">GitHub ↗</a></div></footer>
+</body>
+</html>

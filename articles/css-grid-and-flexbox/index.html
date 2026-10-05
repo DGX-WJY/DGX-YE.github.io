@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10120f">
+  <meta name="description" content="布局不是语法考试，理解空间关系之后，选择会变得很自然。">
+  <link rel="canonical" href="https://www.yehack.com/articles/css-grid-and-flexbox/"><link rel="icon" href="/assets/brand/yehack.png"><link rel="alternate" type="application/rss+xml" title="Yehack Journal" href="/feed.xml">
+  <link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/article.css">
+  <title>CSS Grid 与 Flexbox 的取舍 — Yehack</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"CSS Grid 与 Flexbox 的取舍","description":"布局不是语法考试，理解空间关系之后，选择会变得很自然。","datePublished":"2026-07-22","author":{"@type":"Person","name":"Yehack"},"mainEntityOfPage":"https://www.yehack.com/articles/css-grid-and-flexbox/"}</script>
+  <script src="/js/site.js" defer></script><script src="/js/reader.js" defer></script>
+</head>
+<body data-page="articles" class="reader-page">
+  <div class="reading-progress" data-progress></div><a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+  <a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a>
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button>
+  <nav class="primary-nav" id="primary-nav" aria-label="主导航"><a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles" aria-current="page">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a></nav>
+  <button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换主题"><span aria-hidden="true">◐</span></button>
+</header>
+  <main id="main" class="reader-wrap">
+    <a class="back-link" href="/articles/">← 返回文章归档</a>
+    <article class="article-reader">
+      <header><p class="eyebrow">前端</p><h1>CSS Grid 与 Flexbox 的取舍</h1><p class="article-summary">布局不是语法考试，理解空间关系之后，选择会变得很自然。</p>
+        <div class="article-meta"><time datetime="2026-07-22">2026年7月22日</time><span>1 分钟阅读</span><span>#CSS</span><span>#布局</span><span>#前端</span></div>
+      </header>
+      <div class="article-reader-body">
+      <p>选择布局模型时，先问内容主要沿一个方向排列，还是需要同时控制行与列。这个问题往往比记住属性列表更有用。</p>
+      <p>Flexbox 适合一维排列：导航栏、按钮组、工具栏以及需要根据内容伸缩的行列。它擅长分配剩余空间，也能自然处理元素顺序和对齐。</p>
+      <p>Grid 更适合二维结构：页面分区、卡片矩阵和需要对齐行列轨道的布局。先定义轨道，再让内容进入网格，能让整体关系更明确。</p>
+      <p>两者并不互斥。常见做法是外层用 Grid 管理页面区域，组件内部用 Flexbox 对齐按钮和文字。让布局跟随内容结构，而不是让内容迁就某个属性。</p>
+      </div>
+      <div class="article-end"><button type="button" data-copy-link>复制文章链接</button><button type="button" data-print>打印 / 保存 PDF</button></div>
+    </article>
+    <nav class="article-neighbors" aria-label="上一篇和下一篇"><a class="neighbor-link neighbor-previous" href="/articles/improving-a-small-tool/"><span>上一篇</span><strong>把一个小工具做得更好用</strong></a>
+      <a class="neighbor-link neighbor-next" href="/articles/javascript-event-loop/"><span>下一篇</span><strong>深入理解 JavaScript 事件循环</strong></a></nav>
+    <section class="discussion-box"><p class="eyebrow">DISCUSSION</p><h2>想继续聊聊？</h2><p>欢迎到 GitHub Discussions 留下补充、问题或不同看法。</p><a class="text-link" href="https://github.com/DGX-WJY/DGX-YE.github.io/discussions" target="_blank" rel="noopener noreferrer">前往讨论区 <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer wrap"><a class="footer-brand" href="/">YEHACK / JOURNAL</a><span>BUILD SLOWLY · SHARE OPENLY</span><div><a href="/feed.xml">RSS</a><a href="https://github.com/DGX-WJY/DGX-YE.github.io" rel="noopener noreferrer">GitHub ↗</a></div></footer>
+</body>
+</html>

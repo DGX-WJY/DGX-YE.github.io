@@ -35,10 +35,20 @@ assert(Array.isArray(tools) && tools.length > 0, 'data/tools.json must contain t
 
 const rss = await readFile(resolve(root, 'feed.xml'), 'utf8');
 const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
+const archive = await readFile(resolve(root, 'articles/index.html'), 'utf8');
+const compactIndex = await readJson('data/articles-index.json');
+assert(compactIndex.articles.length === articlesFeed.articles.length, 'data/articles-index.json must be generated from every article');
+assert(compactIndex.articles.every((article) => !('content' in article)), 'the archive index must not contain full article bodies');
 for (const article of articlesFeed.articles) {
-  const articleUrl = `article.html?slug=${article.slug}`;
-  assert(rss.includes(`<guid>https://www.yehack.com/${articleUrl}</guid>`), `feed.xml is missing ${article.slug}`);
-  assert(sitemap.includes(`article.html?slug=${article.slug}`), `sitemap.xml is missing ${article.slug}`);
+  const articleUrl = `https://www.yehack.com/articles/${article.slug}/`;
+  assert(rss.includes(`<guid>${articleUrl}</guid>`), `feed.xml is missing ${article.slug}`);
+  assert(sitemap.includes(articleUrl), `sitemap.xml is missing ${article.slug}`);
+  assert(archive.includes(`href="/articles/${article.slug}/"`), `articles/index.html is missing ${article.slug}`);
+  try {
+    await access(resolve(root, `articles/${article.slug}/index.html`));
+  } catch {
+    errors.push(`Missing generated article page: articles/${article.slug}/index.html; run node scripts/build-articles.mjs`);
+  }
 }
 
 const htmlPaths = [];

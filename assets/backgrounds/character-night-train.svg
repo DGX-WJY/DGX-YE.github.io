@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="1" y2="1"><stop stop-color="#132334"/><stop offset=".58" stop-color="#536875"/><stop offset="1" stop-color="#d49880"/></linearGradient>
+    <linearGradient id="window" x2="0" y2="1"><stop stop-color="#293d57"/><stop offset="1" stop-color="#ec9d83"/></linearGradient>
+    <linearGradient id="coat" x2="1" y2="1"><stop stop-color="#263e51"/><stop offset="1" stop-color="#111b2b"/></linearGradient>
+    <linearGradient id="hair" x2="1" y2="1"><stop stop-color="#172333"/><stop offset=".6" stop-color="#34425b"/><stop offset="1" stop-color="#765970"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#f7d8ac" stop-opacity=".65"/><stop offset="1" stop-color="#f7d8ac" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1600v1000H0z"/>
+  <path fill="#1b2b3a" fill-opacity=".72" d="M0 610h1600v390H0z"/>
+  <path fill="#1b2834" d="M0 725h190V470h75v255h148V560h99v165h187V430h83v295h173V525h88v200h155V465h92v260h152v-90h158v425H0z"/>
+  <path stroke="#efbd98" stroke-opacity=".28" stroke-width="3" d="M40 0v1000M1555 0v1000"/>
+  <path fill="url(#window)" fill-opacity=".66" d="M1050 112h445v560h-445z"/>
+  <circle cx="1283" cy="250" r="160" fill="url(#glow)"/>
+  <circle cx="1283" cy="250" r="48" fill="#f7d8ac" fill-opacity=".83"/>
+  <path stroke="#d9c2a2" stroke-opacity=".26" stroke-width="8" d="M1068 490h409M1170 115v550M1390 115v550"/>
+  <path fill="#8e9daa" fill-opacity=".26" d="M0 780h1600v220H0z"/>
+  <path fill="url(#coat)" d="M223 1000c19-194 75-307 202-342 126-35 232 27 274 152l52 190H223z"/>
+  <path fill="#c99383" d="M384 577c-20-88-1-188 42-250 43-62 142-83 212-32 71 52 82 181 39 284l-47 88-191-17z"/>
+  <path fill="url(#hair)" d="M351 494c-12-139 25-272 121-323 92-48 226-20 266 74 22 53 4 149-9 195-15-81-48-116-105-135-63-22-133 8-180-32-7 71-41 132-93 221z"/>
+  <path fill="#29384a" d="M376 414c-69 76-91 206-39 334l94-114-7-213-48-7zM665 390c88 90 91 236 38 338l-87-116 2-207 47-15z"/>
+  <path fill="#ddaf9b" d="M480 514c21-9 42-10 62-5M584 514c20-7 39-5 55 3" stroke="#34404b" stroke-linecap="round" stroke-width="7"/>
+  <path fill="#382c3a" d="M531 574c18 8 35 8 51-1" stroke-linecap="round" stroke-width="6"/>
+  <path fill="#d9e1df" fill-opacity=".63" d="M270 953c105-54 202-69 294-45 49 13 94 39 131 78l18 14H223z"/>
+  <path fill="#f7d8ac" fill-opacity=".75" d="M735 368h12v12h-12zM103 324h7v7h-7zM914 194h8v8h-8zM846 605h6v6h-6z"/>
+  <path stroke="#d9b7a8" stroke-opacity=".34" stroke-width="2" d="M0 866c310-88 610-88 900 0s510 87 700 12"/>
+</svg>

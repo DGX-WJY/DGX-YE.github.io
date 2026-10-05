@@ -36,9 +36,8 @@ const dateText = (date) => new Intl.DateTimeFormat('zh-CN', { dateStyle: 'long',
 const rfcDate = (date) => new Date(`${date}T00:00:00Z`).toUTCString();
 const header = `<header class="site-header">
   <a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button>
   <nav class="primary-nav" id="primary-nav" aria-label="主导航"><a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles" aria-current="page">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a></nav>
-  <button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换主题"><span aria-hidden="true">◐</span></button>
+  <div class="header-actions"><button class="background-toggle" type="button" aria-label="更换背景插画" title="更换背景插画"><span aria-hidden="true">▧</span></button><button class="style-toggle" type="button" aria-label="切换页面风格" title="切换页面风格"><span aria-hidden="true">Aa</span></button><button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换明暗主题"><span aria-hidden="true">◐</span></button><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button></div>
 </header>`;
 const footer = `<footer class="site-footer wrap"><a class="footer-brand" href="/">YEHACK / JOURNAL</a><span>BUILD SLOWLY · SHARE OPENLY</span><div><a href="/feed.xml">RSS</a><a href="https://github.com/DGX-WJY/DGX-YE.github.io" rel="noopener noreferrer">GitHub ↗</a></div></footer>`;
 
@@ -96,6 +95,7 @@ for (const [position, article] of articles.entries()) {
   <script src="/js/site.js" defer></script><script src="/js/reader.js" defer></script>
 </head>
 <body data-page="articles" class="reader-page">
+  <div class="ambient-background" aria-hidden="true"></div><span class="style-announcement" aria-live="polite" data-style-announcement></span>
   <div class="reading-progress" data-progress></div><a class="skip-link" href="#main">跳到正文</a>
   ${header}
   <main id="main" class="reader-wrap">

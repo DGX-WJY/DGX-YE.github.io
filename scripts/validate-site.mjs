@@ -52,6 +52,15 @@ for (const article of articlesFeed.articles) {
 }
 
 const htmlPaths = [];
+const styleIds = ['default', 'sakura', 'paper', 'arcade', 'ocean'];
+const backgrounds = [
+  'character-night-train.svg',
+  'character-sakura.svg',
+  'character-stargazer.svg',
+  'scene-autumn-shrine.svg',
+  'scene-starry-coast.svg',
+  'scene-sky-city.svg'
+];
 async function collectHtml(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const path = resolve(directory, entry.name);
@@ -71,6 +80,21 @@ for (const htmlPath of htmlPaths) {
     }
   }
   assert(!html.includes('js/index.js') && !html.includes('view/'), `${htmlPath.slice(root.length + 1)} still references the old SPA`);
+  if (!htmlPath.endsWith('article.html')) {
+    assert(html.includes('class="ambient-background"'), `${htmlPath.slice(root.length + 1)} is missing its illustration background`);
+    assert(html.includes('class="style-toggle"'), `${htmlPath.slice(root.length + 1)} is missing the style switch`);
+    assert(html.includes('class="background-toggle"'), `${htmlPath.slice(root.length + 1)} is missing the background switch`);
+  }
+}
+
+const siteStyles = await readFile(resolve(root, 'css/site.css'), 'utf8');
+styleIds.forEach((style) => assert(siteStyles.includes(`data-style="${style}"`), `css/site.css is missing the ${style} preset`));
+for (const background of backgrounds) {
+  try {
+    await access(resolve(root, `assets/backgrounds/${background}`));
+  } catch {
+    errors.push(`Missing illustration asset: assets/backgrounds/${background}`);
+  }
 }
 
 if (errors.length) {

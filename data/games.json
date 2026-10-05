@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Hollow Knight",
+    "platform": "PC · Switch",
+    "description": "以精细地图探索和克制叙事构建的类银河战士恶魔城作品，值得慢慢熟悉它的地下王国。",
+    "tags": ["探索", "动作", "独立"],
+    "url": "https://store.steampowered.com/app/367520/"
+  },
+  {
+    "title": "Celeste",
+    "platform": "PC · 主机",
+    "description": "把高难度平台跳跃、精准操控和关于自我接纳的故事结合在一起。",
+    "tags": ["平台跳跃", "叙事", "独立"],
+    "url": "https://store.steampowered.com/app/504230/"
+  },
+  {
+    "title": "Hades",
+    "platform": "PC · 主机",
+    "description": "动作战斗、角色关系与重复挑战紧密咬合，每次尝试都会推进一些新的故事。",
+    "tags": ["Roguelike", "动作", "叙事"],
+    "url": "https://store.steampowered.com/app/1145360/"
+  },
+  {
+    "title": "Stardew Valley",
+    "platform": "PC · 主机 · 移动端",
+    "description": "一个可以按自己节奏经营的乡村生活模拟世界，系统丰富却不催促玩家。",
+    "tags": ["模拟", "经营", "放松"],
+    "url": "https://store.steampowered.com/app/413150/"
+  },
+  {
+    "title": "Outer Wilds",
+    "platform": "PC · 主机",
+    "description": "把好奇心作为唯一进度系统的太空探索冒险，第一次发现的惊喜无法复制。",
+    "tags": ["探索", "解谜", "科幻"],
+    "url": "https://store.steampowered.com/app/753640/"
+  },
+  {
+    "title": "Portal 2",
+    "platform": "PC · 主机",
+    "description": "以空间解谜和幽默对白示范如何让关卡机制本身成为叙事的一部分。",
+    "tags": ["解谜", "合作", "设计"],
+    "url": "https://store.steampowered.com/app/620/"
+  }
+]

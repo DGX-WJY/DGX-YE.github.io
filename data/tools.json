@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "json-formatter",
+    "title": "JSON 整理器",
+    "category": "文本与数据",
+    "description": "校验 JSON 并按需格式化或压缩，错误会在本地即时提示。",
+    "tags": ["JSON", "开发", "格式化"]
+  },
+  {
+    "slug": "base64-codec",
+    "title": "Base64 编解码",
+    "category": "文本与数据",
+    "description": "对 UTF-8 文本进行 Base64 编码或解码，不经过服务器。",
+    "tags": ["Base64", "编码", "UTF-8"]
+  },
+  {
+    "slug": "color-converter",
+    "title": "颜色转换器",
+    "category": "设计与颜色",
+    "description": "选择或输入 HEX 颜色，即时查看 RGB 与 HSL 数值。",
+    "tags": ["HEX", "RGB", "HSL"]
+  }
+]

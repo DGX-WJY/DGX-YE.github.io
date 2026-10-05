@@ -1,0 +1,71 @@
+import { readFile, access, readdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
+
+const root = resolve(import.meta.dirname, '..');
+const readJson = async (path) => JSON.parse(await readFile(resolve(root, path), 'utf8'));
+const articlesFeed = await readJson('data/articles.json');
+const games = await readJson('data/games.json');
+const tools = await readJson('data/tools.json');
+const errors = [];
+
+function assert(condition, message) {
+  if (!condition) errors.push(message);
+}
+
+function validateSlugs(items, label) {
+  const slugs = items.map((item) => item.slug);
+  assert(new Set(slugs).size === slugs.length, `${label}: slug values must be unique`);
+  slugs.forEach((slug) => assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug), `${label}: invalid slug "${slug}"`));
+}
+
+assert(articlesFeed && Array.isArray(articlesFeed.articles), 'data/articles.json must contain an articles array');
+assert(typeof articlesFeed.updatedAt === 'string', 'data/articles.json must contain updatedAt');
+validateSlugs(articlesFeed.articles, 'articles');
+articlesFeed.articles.forEach((article) => {
+  assert(typeof article.title === 'string' && article.title.length > 0, `article ${article.slug}: title is required`);
+  assert(!Number.isNaN(Date.parse(article.date)), `article ${article.slug}: date must be valid`);
+  assert(typeof article.category === 'string', `article ${article.slug}: category is required`);
+  assert(typeof article.summary === 'string', `article ${article.slug}: summary is required`);
+  assert(Array.isArray(article.tags) && article.tags.every((tag) => typeof tag === 'string'), `article ${article.slug}: tags must be strings`);
+  assert(Array.isArray(article.content) && article.content.every((paragraph) => typeof paragraph === 'string'), `article ${article.slug}: content must be paragraphs`);
+});
+assert(Array.isArray(games) && games.length > 0, 'data/games.json must contain game records');
+games.forEach((game) => assert(/^https:\/\//.test(game.url), `game ${game.title}: an HTTPS product link is required`));
+assert(Array.isArray(tools) && tools.length > 0, 'data/tools.json must contain tool records');
+
+const rss = await readFile(resolve(root, 'feed.xml'), 'utf8');
+const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
+for (const article of articlesFeed.articles) {
+  const articleUrl = `article.html?slug=${article.slug}`;
+  assert(rss.includes(`<guid>https://www.yehack.com/${articleUrl}</guid>`), `feed.xml is missing ${article.slug}`);
+  assert(sitemap.includes(`article.html?slug=${article.slug}`), `sitemap.xml is missing ${article.slug}`);
+}
+
+const htmlPaths = [];
+async function collectHtml(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const path = resolve(directory, entry.name);
+    if (entry.isDirectory()) await collectHtml(path);
+    else if (entry.name.endsWith('.html')) htmlPaths.push(path);
+  }
+}
+await collectHtml(root);
+for (const htmlPath of htmlPaths) {
+  const html = await readFile(htmlPath, 'utf8');
+  for (const [, rawPath] of html.matchAll(/(?:href|src)="(\/[^"#?]+)(?:[?#][^"]*)?"/g)) {
+    const path = rawPath.endsWith('/') ? `${rawPath}index.html` : rawPath;
+    try {
+      await access(resolve(root, `.${path}`));
+    } catch {
+      errors.push(`${htmlPath.slice(root.length + 1)} references missing ${path}`);
+    }
+  }
+  assert(!html.includes('js/index.js') && !html.includes('view/'), `${htmlPath.slice(root.length + 1)} still references the old SPA`);
+}
+
+if (errors.length) {
+  console.error(errors.map((error) => `- ${error}`).join('\n'));
+  process.exitCode = 1;
+} else {
+  console.log(`Validated ${htmlPaths.length} HTML pages, ${articlesFeed.articles.length} articles, ${games.length} game records, and ${tools.length} tools.`);
+}

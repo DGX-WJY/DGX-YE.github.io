@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Yehack / Play · Make · Write</title>
+    <link>https://www.yehack.com/articles/</link>
+    <description>游戏、工具与构建记录。</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 05 Oct 2026 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>深入理解 JavaScript 事件循环</title>
+      <link>https://www.yehack.com/article.html?slug=javascript-event-loop</link>
+      <guid>https://www.yehack.com/article.html?slug=javascript-event-loop</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+      <description>从宏任务到微任务，重新梳理浏览器与 Node.js 中异步代码的节奏。</description>
+    </item>
+    <item>
+      <title>CSS Grid 与 Flexbox 的取舍</title>
+      <link>https://www.yehack.com/article.html?slug=css-grid-and-flexbox</link>
+      <guid>https://www.yehack.com/article.html?slug=css-grid-and-flexbox</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 +0000</pubDate>
+      <description>布局不是语法考试，理解空间关系之后，选择会变得很自然。</description>
+    </item>
+    <item>
+      <title>把一个小工具做得更好用</title>
+      <link>https://www.yehack.com/article.html?slug=improving-a-small-tool</link>
+      <guid>https://www.yehack.com/article.html?slug=improving-a-small-tool</guid>
+      <pubDate>Thu, 18 Jun 2026 00:00:00 +0000</pubDate>
+      <description>从输入状态、错误反馈到退出路径，记录一次工具界面的重新设计。</description>
+    </item>
+    <item>
+      <title>Docker 开发环境的轻量化实践</title>
+      <link>https://www.yehack.com/article.html?slug=lightweight-docker-environment</link>
+      <guid>https://www.yehack.com/article.html?slug=lightweight-docker-environment</guid>
+      <pubDate>Sat, 09 May 2026 00:00:00 +0000</pubDate>
+      <description>减少配置噪声，让本地环境更像项目的一部分，而不是额外的工作。</description>
+    </item>
+    <item>
+      <title>写给未来自己的代码注释</title>
+      <link>https://www.yehack.com/article.html?slug=writing-useful-code-comments</link>
+      <guid>https://www.yehack.com/article.html?slug=writing-useful-code-comments</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <description>好的注释不解释显而易见的语法，它应该保存决策和上下文。</description>
+    </item>
+    <item>
+      <title>学习一门新语言的第一个周末</title>
+      <link>https://www.yehack.com/article.html?slug=learning-a-language-in-a-weekend</link>
+      <guid>https://www.yehack.com/article.html?slug=learning-a-language-in-a-weekend</guid>
+      <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
+      <description>先做一个小而完整的东西，再去追逐所有看起来有趣的可能性。</description>
+    </item>
+  </channel>
+</rss>

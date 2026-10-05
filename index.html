@@ -1,67 +1,55 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Yehack Tools：面向创作者与开发者的共享在线工具集。">
-    <title>Yehack Tools / 共享工具集</title>
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/articles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="Yehack 的个人博客：记录独立游戏、开发工具与构建过程。">
+  <link rel="canonical" href="https://www.yehack.com/">
+  <link rel="icon" href="/assets/brand/yehack.png">
+  <link rel="alternate" type="application/rss+xml" title="Yehack Journal" href="/feed.xml">
+  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/css/home.css">
+  <title>Yehack — 游戏、工具与构建</title>
+  <script src="/js/site.js" defer></script>
+  <script src="/js/home.js" defer></script>
 </head>
-<body>
-    <div class="media-plane" aria-hidden="true">
-        <video autoplay muted loop playsinline poster="image/bg.png">
-            <source src="https://cdn.coverr.co/videos/coverr-a-wave-of-light-1574/1080p.mp4" type="video/mp4">
-        </video>
-        <div class="media-wash"></div><div class="scanline"></div>
-    </div>
+<body data-page="home">
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">菜单</button>
+    <nav class="primary-nav" id="primary-nav" aria-label="主导航">
+      <a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="切换浅色主题" title="切换主题"><span aria-hidden="true">◐</span></button>
+  </header>
+  <main id="main">
+    <section class="home-hero wrap">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> PERSONAL LOG / 2026</p>
+        <h1>玩游戏，也拆解<br>让世界运转的<span>工具。</span></h1>
+        <p class="hero-intro">这里记录独立游戏、开发实践和那些值得反复打磨的小工具。慢慢做，认真玩，持续分享。</p>
+        <div class="hero-actions"><a class="button button-dark" href="/articles/">读最新文章 <span aria-hidden="true">↗</span></a><a class="text-link" href="/about/">认识 Yehack <span aria-hidden="true">→</span></a></div>
+      </div>
+      <aside class="hero-note" aria-label="博客简介">
+        <div class="note-top"><span>FIELD NOTES</span><span>001—026</span></div>
+        <div class="note-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orbit-core">Y.</span><span class="orbit-star">✳</span></div>
+        <p>把好奇心变成<br><strong>可以打开的东西。</strong></p>
+        <div class="note-bottom"><span>INDEPENDENT WEBLOG</span><span>浙江 · 中国</span></div>
+      </aside>
+    </section>
 
-    <header class="site-header">
-        <a class="brand" href="#top" aria-label="Yehack Tools 首页"><span class="brand-mark"><img src="image/yehack.png" alt=""></span><span><b>YEHACK</b><small>TOOLS / 共享工具集</small></span></a>
-        <nav class="main-nav" aria-label="主导航"><a class="nav-item is-active" href="#top">总览</a><a class="nav-item" href="#articles">文章</a><a class="nav-item" href="#workspace">工作台</a><a class="nav-item" href="#manifest">使用说明</a></nav>
-        <button class="icon-button" type="button" data-modal="suggestion" aria-label="提交建议" title="提交建议"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg></button>
-    </header>
+    <section class="home-section wrap">
+      <div class="section-heading"><div><p class="eyebrow">01 / LATEST WRITING</p><h2>最近写了什么</h2></div><a class="text-link" href="/articles/">全部文章 <span aria-hidden="true">↗</span></a></div>
+      <div class="home-article-list" data-home-articles><p class="loading-note">正在加载文章…</p></div>
+    </section>
 
-    <main id="top" class="page-shell">
-        <section class="hero-section reveal"><div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> OPEN TOOL LIBRARY / 2026.09</p><h1>把重复工作，<em>交给工具。</em></h1><p class="hero-text">一组可在线使用、可持续改进的轻量工具。为开发者、创作者和好奇心保留一个干净的工作台。</p><div class="hero-actions"><a class="button button-primary" href="#workspace">进入工作台 <span>↘</span></a><button class="button button-ghost" type="button" data-modal="suggestion">提交功能建议</button></div></div><div class="hero-signal panel-line"><div class="signal-top"><span>LIVE INDEX</span><strong>06</strong></div><div class="signal-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="signal-bottom"><span>LOCAL-FIRST</span><span>STATUS / READY</span></div></div></section>
-
-        <section id="articles" class="articles-section reveal" aria-labelledby="articles-title">
-            <div class="section-heading"><div><p class="eyebrow">01 / JOURNAL</p><h2 id="articles-title">最新文章</h2></div><span class="section-note">文章目录每分钟自动同步</span></div>
-            <div class="articles-toolbar">
-                <label class="visually-hidden" for="article-search">搜索文章</label>
-                <input id="article-search" class="article-filter" type="search" placeholder="搜索标题、摘要或标签">
-                <label class="visually-hidden" for="article-category">文章分类</label>
-                <select id="article-category" class="article-filter"><option value="">全部分类</option></select>
-            </div>
-            <div class="articles-grid" data-articles-list aria-live="polite"></div>
-            <p class="articles-status" data-articles-status role="status">正在加载文章…</p>
-        </section>
-
-        <section id="workspace" class="workspace-section reveal"><div class="section-heading"><div><p class="eyebrow">02 / WORKSPACE</p><h2>常用工具</h2></div><span class="section-note">全部在浏览器内处理 · 不上传内容</span></div><div class="tool-grid">
-            <article class="tool-card tool-card-wide"><div class="tool-card-head"><span class="tool-icon">{ }</span><div><p class="tool-kicker">DATA / 001</p><h3>JSON 整理器</h3></div><span class="tool-status">READY</span></div><p class="tool-desc">校验、格式化或压缩 JSON。错误会在本地即时反馈。</p><textarea class="tool-input" data-json-input placeholder='粘贴 JSON，例如：{"name":"Yehack"}'></textarea><div class="tool-footer"><span class="tool-result" data-json-result>等待输入</span><div class="tool-actions"><button class="mini-button" data-json-action="format">格式化</button><button class="mini-button" data-json-action="minify">压缩</button><button class="mini-button mini-button-muted" data-json-action="clear">清空</button></div></div></article>
-            <article class="tool-card"><div class="tool-card-head"><span class="tool-icon">B64</span><div><p class="tool-kicker">TEXT / 002</p><h3>Base64 编解码</h3></div></div><p class="tool-desc">处理 UTF-8 文本，不经过服务器。</p><textarea class="tool-input" data-base64-input placeholder="输入文本"></textarea><div class="tool-actions"><button class="mini-button" data-base64-action="encode">编码</button><button class="mini-button" data-base64-action="decode">解码</button></div><pre class="tool-output" data-base64-output>输出会显示在这里</pre></article>
-            <article class="tool-card"><div class="tool-card-head"><span class="tool-icon tool-icon-color">●</span><div><p class="tool-kicker">COLOR / 003</p><h3>颜色取样器</h3></div></div><p class="tool-desc">选择一个颜色，查看常用格式。</p><div class="color-picker-row"><input type="color" value="#8ee6c9" data-color-picker><input class="tool-input" value="#8EE6C9" data-color-hex aria-label="HEX 颜色值"></div><div class="color-values"><span><b>RGB</b><code data-color-rgb>142, 230, 201</code></span><span><b>HSL</b><code data-color-hsl>161°, 63%, 73%</code></span></div></article>
-        </div></section>
-
-        <section id="manifest" class="manifest-section reveal"><div class="manifest-main panel-line"><p class="eyebrow">03 / MANIFEST</p><h2>共享，但有边界。</h2><p>站内工具用于学习、研究与个人效率提升。工具可能来自复刻、仿制或社区建议，请在使用前确认你拥有相应内容的权利。</p><button class="text-button" type="button" data-modal="terms">查看使用约定 <span>↗</span></button></div><div class="manifest-list"><div><span>01</span><p>在线使用<br><b>内容默认留在本地</b></p></div><div><span>02</span><p>下载使用<br><b>需完成实名确认</b></p></div><div><span>03</span><p>商业用途<br><b>不在本站授权范围</b></p></div></div></section>
-        <section class="closing-section reveal"><div><p class="eyebrow">04 / NEXT ITERATION</p><h2>你想让工作台<br><em>多一个什么工具？</em></h2></div><button class="button button-primary" type="button" data-modal="suggestion">留下建议 <span>↗</span></button></section>
-    </main>
-    <footer class="site-footer"><span>© 2026 YEHACK TOOLS</span><span>TOOLS ARE SHARED AS-IS · USE RESPONSIBLY</span></footer>
-
-    <dialog class="modal" id="suggestion-modal"><form method="dialog" class="modal-card"><button class="modal-close" value="cancel" aria-label="关闭">×</button><p class="eyebrow">FEEDBACK CHANNEL</p><h2>提交功能建议</h2><p>告诉我你想把哪项重复工作交给工具。</p><label>你的建议<textarea required placeholder="例如：一个可以批量重命名文件的工具"></textarea></label><label>联系邮箱 <span class="optional">可选</span><input type="email" placeholder="name@example.com"></label><button class="button button-primary" value="submit">发送建议 <span>↗</span></button></form></dialog>
-    <dialog class="modal" id="terms-modal"><form method="dialog" class="modal-card"><button class="modal-close" value="cancel" aria-label="关闭">×</button><p class="eyebrow">USE MANIFEST</p><h2>使用约定</h2><ul class="terms-list"><li>站内工具仅授予在规定范围内的个人使用权。</li><li>如需下载、二次部署或分发，须先完成实名确认。</li><li>禁止将站内工具用于违法、侵权或未经授权的商业活动。</li><li>因违规使用产生的责任由使用者自行承担，与本站人员无关。</li></ul><button class="button button-ghost" value="cancel">我已了解</button></form></dialog>
-    <dialog class="modal article-modal" id="article-modal" aria-labelledby="article-dialog-title">
-        <form method="dialog" class="modal-card">
-            <button class="modal-close" value="cancel" aria-label="关闭">×</button>
-            <p class="eyebrow" data-article-category></p>
-            <h2 id="article-dialog-title" data-article-title></h2>
-            <div class="article-dialog-meta" data-article-meta></div>
-            <div class="article-dialog-body" data-article-body></div>
-            <button class="button button-ghost" value="cancel">关闭文章</button>
-        </form>
-    </dialog>
-    <div class="toast" role="status" aria-live="polite"></div>
-    <script src="js/app.js"></script>
-    <script src="js/articles.js"></script>
+    <section class="home-collections">
+      <div class="collection-block collection-games"><div class="wrap collection-inner"><div><p class="eyebrow">02 / GAME LOG</p><h2>认真玩，<br>也认真记录。</h2><p>独立游戏、设计巧思，以及通关之后还留在脑海里的东西。</p><a class="button button-outline" href="/games/">逛游戏档案 <span aria-hidden="true">↗</span></a></div><div class="collection-index" aria-hidden="true"><span>G</span><span>PLAY / REFLECT / REPEAT</span></div></div></div>
+      <div class="collection-block collection-tools"><div class="wrap collection-inner"><div><p class="eyebrow">03 / TOOLBOX</p><h2>小工具，<br>解决真问题。</h2><p>从日常开发里长出来的轻量工具，开箱即用，内容留在本地。</p><a class="button button-outline" href="/tools/">打开工具箱 <span aria-hidden="true">↗</span></a></div><div class="collection-index" aria-hidden="true"><span>T</span><span>BUILD / SHARE / IMPROVE</span></div></div></div>
+    </section>
+  </main>
+  <footer class="site-footer wrap"><a class="footer-brand" href="/">YEHACK / JOURNAL</a><span>BUILD SLOWLY · SHARE OPENLY</span><div><a href="/feed.xml">RSS</a><a href="https://github.com/DGX-WJY/DGX-YE.github.io" rel="noopener noreferrer">GitHub ↗</a></div></footer>
 </body>
 </html>

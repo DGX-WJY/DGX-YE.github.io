@@ -1,0 +1,43 @@
+.reading-progress { position: fixed; z-index: 8; top: 0; left: 0; width: 0; height: 3px; background: var(--accent); }
+.reader-wrap { width: min(740px, calc(100% - 40px)); margin: auto; }
+.back-link { display: inline-block; margin: 34px 0 28px; color: var(--muted); font-size: 11px; }
+.back-link:hover { color: var(--accent); }
+.article-reader { padding: 5px 0 20px; }
+.article-reader header { padding-bottom: 26px; border-bottom: 1px solid var(--line); }
+.article-reader h1 { margin: 0; font-size: clamp(36px, 6vw, 60px); font-weight: 600; letter-spacing: -.065em; line-height: 1.2; }
+.article-reader .article-summary { margin: 17px 0; color: var(--muted); font-size: 15px; }
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; color: var(--faint); font: 10px var(--mono); }
+.article-reader-body { padding: 24px 0 14px; }
+.article-reader-body p { margin: 0 0 21px; color: var(--ink); font-size: 15px; line-height: 2; white-space: pre-wrap; }
+.article-reader-body h2 { margin: 38px 0 13px; font-size: 24px; letter-spacing: -.04em; }
+.article-reader-body h3 { margin: 30px 0 11px; font-size: 19px; }
+.article-reader-body blockquote { margin: 25px 0; padding: 5px 0 5px 19px; border-left: 2px solid var(--accent); color: var(--muted); }
+.article-reader-body pre { overflow-x: auto; padding: 16px; background: var(--panel); color: var(--accent); font: 12px/1.7 var(--mono); }
+.article-reader-body code { font-family: var(--mono); }
+.article-end { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 30px; padding: 18px 0; border-top: 1px solid var(--line); }
+.article-end button { padding: 8px 11px; border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: 11px; }
+.article-end button:hover { border-color: var(--accent); color: var(--accent); }
+.article-neighbors { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0 45px; }
+.neighbor-link { min-height: 90px; padding: 14px; border: 1px solid var(--line); }
+.neighbor-link:hover { border-color: var(--accent); }
+.neighbor-link span { display: block; margin-bottom: 8px; color: var(--faint); font: 9px var(--mono); }
+.neighbor-link strong { font-size: 12px; font-weight: 500; }
+.neighbor-next { text-align: right; }
+.discussion-box { padding: 24px; border: 1px solid var(--line); background: var(--panel); }
+.discussion-box h2 { margin: 0 0 6px; font-size: 21px; }
+.discussion-box > p:not(.eyebrow) { margin: 0 0 12px; color: var(--muted); font-size: 12px; }
+.invalid-article { padding: 60px 0; }
+.invalid-article h1 { font-size: 38px; }
+.invalid-article p { color: var(--muted); }
+@media (max-width: 520px) {
+  .article-reader-body p { font-size: 14px; }
+  .article-neighbors { grid-template-columns: 1fr; }
+  .neighbor-next { text-align: left; }
+  .article-end { align-items: flex-start; flex-direction: column; }
+}
+@media print {
+  .site-header, .site-footer, .back-link, .article-end, .article-neighbors, .discussion-box, .reading-progress { display: none !important; }
+  body { background: #fff; color: #111; }
+  .reader-wrap { width: 100%; }
+  .article-reader-body p, .article-reader .article-summary { color: #111; }
+}

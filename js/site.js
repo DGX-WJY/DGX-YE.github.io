@@ -14,12 +14,16 @@
     { id: 'ocean', label: '深海薄荷 · 海风衬线' }
   ];
   const backgrounds = [
-    'character-night-train.svg',
-    'character-sakura.svg',
-    'character-stargazer.svg',
-    'scene-autumn-shrine.svg',
-    'scene-starry-coast.svg',
-    'scene-sky-city.svg'
+    'night-train.png',
+    'Village-Galaxy.png',
+    'Earth-Temple.png',
+    'beautiful-1.png',
+    'beautiful-2.png',
+    'beautiful-3.png',
+    'beautiful-4.png',
+    'beautiful-5.png',
+    'beautiful-6.png',
+    'cyberpunk-1.png'
   ];
   const root = document.documentElement;
   const themeColor = document.querySelector('meta[name="theme-color"]');

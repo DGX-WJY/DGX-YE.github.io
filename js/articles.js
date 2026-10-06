@@ -26,14 +26,16 @@
     const top = node('div', 'article-card-top');
     const date = node('time');
     date.dateTime = article.date;
-    date.textContent = dateFormatter.format(new Date(`${article.date}T00:00:00`));
+    date.textContent = `发表于 ${dateFormatter.format(new Date(`${article.date}T00:00:00`))}`;
     top.append(node('span', 'article-card-category', article.category), date);
     const title = node('h2', '', article.title);
     const summary = node('p', 'article-card-summary', article.summary);
     const bottom = node('div', 'article-card-bottom');
     const tags = node('div', 'tag-list');
     article.tags.forEach((tag) => tags.append(node('span', 'tag', tag)));
-    bottom.append(tags, node('span', 'read-time', `${article.readingTimeMinutes || 1} 分钟`));
+    const readTime = node('span', 'read-time', `${article.readingTimeMinutes || 1} 分钟阅读`);
+    if (article.updatedAt && article.updatedAt > article.date) readTime.title = `最后更新：${dateFormatter.format(new Date(`${article.updatedAt}T00:00:00`))}`;
+    bottom.append(tags, readTime);
     const link = node('a', 'article-card-link');
     link.href = `/articles/${encodeURIComponent(article.slug)}/`;
     link.setAttribute('aria-label', `阅读文章：${article.title}`);

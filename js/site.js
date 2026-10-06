@@ -35,6 +35,7 @@
   const announcement = document.querySelector('[data-style-announcement]');
   const styleButton = document.querySelector('.style-toggle');
   const backgroundButton = document.querySelector('.background-toggle');
+  let backgroundRequest = 0;
   const savedCardStyle = safeStorageGet('yehack-card-style');
   root.dataset.cardStyle = cardStyles.some((style) => style.id === savedCardStyle) ? savedCardStyle : 'default';
 
@@ -89,17 +90,44 @@
 
   function chooseBackground(forceNext) {
     const previous = safeStorageGet('yehack-background');
-    let candidates = backgrounds.filter((image) => image !== previous);
-    if (!candidates.length) candidates = backgrounds;
-    const chosen = forceNext ? candidates[0] : candidates[Math.floor(Math.random() * candidates.length)];
-    root.style.setProperty('--ambient-image', `url("/assets/backgrounds/${chosen}")`);
-    safeStorageSet('yehack-background', chosen);
-    if (backgroundButton) {
-      const label = chosen.replace(/\.(svg|png|webp)$/i, '').replaceAll('-', ' ');
-      const cardStyle = cardStyles.find((style) => style.id === root.dataset.cardStyle) || cardStyles[0];
-      backgroundButton.title = `当前背景：${label}；卡片：${cardStyle.label} · 点击同时更换`;
-      backgroundButton.setAttribute('aria-label', `当前背景：${label}，当前卡片样式：${cardStyle.label}，点击同时更换`);
+    let chosen;
+    if (forceNext) {
+      let deck = [];
+      try {
+        const savedDeck = JSON.parse(safeStorageGet('yehack-background-deck') || '[]');
+        if (Array.isArray(savedDeck)) deck = savedDeck.filter((image) => backgrounds.includes(image) && image !== previous);
+      } catch (error) {
+        console.warn('[Appearance] Could not read the background rotation deck.', error);
+      }
+      if (!deck.length) {
+        deck = backgrounds.filter((image) => image !== previous);
+        for (let index = deck.length - 1; index > 0; index -= 1) {
+          const swapIndex = Math.floor(Math.random() * (index + 1));
+          [deck[index], deck[swapIndex]] = [deck[swapIndex], deck[index]];
+        }
+      }
+      chosen = deck.shift();
+      safeStorageSet('yehack-background-deck', JSON.stringify(deck));
+    } else {
+      const candidates = backgrounds.filter((image) => image !== previous);
+      chosen = candidates[Math.floor(Math.random() * candidates.length)];
     }
+    const request = ++backgroundRequest;
+    const image = new Image();
+    image.decoding = 'async';
+    image.onload = () => {
+      if (request !== backgroundRequest) return;
+      root.style.setProperty('--ambient-image', `url("/assets/backgrounds/${chosen}")`);
+      safeStorageSet('yehack-background', chosen);
+      if (backgroundButton) {
+        const label = chosen.replace(/\.(svg|png|webp)$/i, '').replaceAll('-', ' ');
+        const cardStyle = cardStyles.find((style) => style.id === root.dataset.cardStyle) || cardStyles[0];
+        backgroundButton.title = `当前背景：${label}；卡片：${cardStyle.label} · 点击同时更换`;
+        backgroundButton.setAttribute('aria-label', `当前背景：${label}，当前卡片样式：${cardStyle.label}，点击同时更换`);
+      }
+    };
+    image.onerror = () => console.error(`[Appearance] Could not load background image: ${chosen}`);
+    image.src = `/assets/backgrounds/${chosen}`;
   }
 
   function changeCardStyle() {

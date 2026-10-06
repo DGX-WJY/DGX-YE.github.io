@@ -1,4 +1,4 @@
-import { readFile, access, readdir } from 'node:fs/promises';
+import { readFile, access, readdir, stat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -24,6 +24,7 @@ validateSlugs(articlesFeed.articles, 'articles');
 articlesFeed.articles.forEach((article) => {
   assert(typeof article.title === 'string' && article.title.length > 0, `article ${article.slug}: title is required`);
   assert(!Number.isNaN(Date.parse(article.date)), `article ${article.slug}: date must be valid`);
+  assert(!article.updatedAt || (!Number.isNaN(Date.parse(article.updatedAt)) && article.updatedAt >= article.date), `article ${article.slug}: updatedAt must be a valid date no earlier than date`);
   assert(typeof article.category === 'string' && article.category.trim().length > 0, `article ${article.slug}: category is required`);
   assert(typeof article.summary === 'string', `article ${article.slug}: summary is required`);
   assert(Array.isArray(article.tags) && article.tags.every((tag) => typeof tag === 'string'), `article ${article.slug}: tags must be strings`);
@@ -44,11 +45,15 @@ assert(compactIndex.articles.length === articlesFeed.articles.length, 'data/arti
 assert(compactIndex.articles.every((article) => !('content' in article)), 'the archive index must not contain full article bodies');
 for (const article of articlesFeed.articles) {
   const indexedArticle = compactIndex.articles.find((item) => item.slug === article.slug);
-  const expectedReadingTime = Math.max(1, Math.ceil(article.content.join(' ').trim().length / 400));
+  const text = article.content.join(' ');
+  const cjkCharacters = (text.match(/[\u3400-\u9fff]/g) || []).length;
+  const words = (text.match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g) || []).length;
+  const expectedReadingTime = Math.max(1, Math.ceil(cjkCharacters / 300 + words / 200));
   assert(indexedArticle, `data/articles-index.json is missing ${article.slug}`);
   if (indexedArticle) {
     assert(indexedArticle.category === article.category, `data/articles-index.json has a stale category for ${article.slug}`);
     assert(indexedArticle.readingTimeMinutes === expectedReadingTime, `data/articles-index.json has an invalid reading time for ${article.slug}; run node scripts/build-articles.mjs`);
+    assert(indexedArticle.updatedAt === article.updatedAt, `data/articles-index.json has a stale updatedAt for ${article.slug}; run node scripts/build-articles.mjs`);
   }
 }
 for (const article of articlesFeed.articles) {
@@ -96,6 +101,7 @@ for (const htmlPath of htmlPaths) {
     }
   }
   assert(!html.includes('js/index.js') && !html.includes('view/'), `${htmlPath.slice(root.length + 1)} still references the old SPA`);
+  assert(html.includes('src="/js/site.js?v='), `${htmlPath.slice(root.length + 1)} must use a versioned site script URL`);
   if (!htmlPath.endsWith('article.html')) {
     assert(html.includes('class="ambient-background"'), `${htmlPath.slice(root.length + 1)} is missing its illustration background`);
     assert(html.includes('class="style-toggle"'), `${htmlPath.slice(root.length + 1)} is missing the style switch`);
@@ -107,7 +113,10 @@ const siteStyles = await readFile(resolve(root, 'css/site.css'), 'utf8');
 styleIds.forEach((style) => assert(siteStyles.includes(`data-style="${style}"`), `css/site.css is missing the ${style} preset`));
 for (const background of backgrounds) {
   try {
-    await access(resolve(root, `assets/backgrounds/${background}`));
+    const assetPath = resolve(root, `assets/backgrounds/${background}`);
+    await access(assetPath);
+    const assetStat = await stat(assetPath);
+    assert(assetStat.size <= 350 * 1024, `Background image exceeds 350 KB: assets/backgrounds/${background}`);
   } catch {
     errors.push(`Missing illustration asset: assets/backgrounds/${background}`);
   }

@@ -34,6 +34,12 @@ const escapeXml = (value) => escapeHtml(value);
 const articlePath = (slug) => `/articles/${encodeURIComponent(slug)}/`;
 const dateText = (date) => new Intl.DateTimeFormat('zh-CN', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(`${date}T00:00:00Z`));
 const rfcDate = (date) => new Date(`${date}T00:00:00Z`).toUTCString();
+const readingTime = (paragraphs) => {
+  const text = paragraphs.join(' ');
+  const cjkCharacters = (text.match(/[\u3400-\u9fff]/g) || []).length;
+  const words = (text.match(/[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g) || []).length;
+  return Math.max(1, Math.ceil(cjkCharacters / 300 + words / 200));
+};
 const header = `<header class="site-header">
   <a class="brand" href="/" aria-label="Yehack 首页"><img src="/assets/brand/yehack.png" alt=""><span>YEHACK<small>PLAY · MAKE · WRITE</small></span></a>
   <nav class="primary-nav" id="primary-nav" aria-label="主导航"><a href="/" data-nav="home">首页</a><a href="/articles/" data-nav="articles" aria-current="page">文章</a><a href="/games/" data-nav="games">游戏</a><a href="/tools/" data-nav="tools">工具</a><a href="/about/" data-nav="about">关于</a></nav>
@@ -45,7 +51,7 @@ const index = {
   updatedAt: feed.updatedAt || '',
   articles: articles.map(({ content, ...metadata }) => ({
     ...metadata,
-    readingTimeMinutes: Math.max(1, Math.ceil(content.join(' ').trim().length / 400))
+    readingTimeMinutes: readingTime(content)
   }))
 };
 await writeFile(resolve(root, 'data/articles-index.json'), `${JSON.stringify(index, null, 2)}\n`);
@@ -54,10 +60,10 @@ const archivePath = resolve(root, 'articles/index.html');
 const archiveHtml = await readFile(archivePath, 'utf8');
 const archiveCards = articles.map((article) => {
   const date = dateText(article.date);
-  const minutes = Math.max(1, Math.ceil(article.content.join(' ').trim().length / 400));
+  const minutes = readingTime(article.content);
   const tags = article.tags.map((tag) => `<span class="tag">${escapeHtml(tag)}</span>`).join('');
   return `      <article class="article-card"><a class="article-card-link" href="${articlePath(article.slug)}" aria-label="阅读文章：${escapeHtml(article.title)}">
-        <div class="article-card-top"><span class="article-card-category">${escapeHtml(article.category)}</span><time datetime="${escapeHtml(article.date)}">${date}</time></div>
+        <div class="article-card-top"><span class="article-card-category">${escapeHtml(article.category)}</span><time datetime="${escapeHtml(article.date)}">发表于 ${date}</time></div>
         <h2>${escapeHtml(article.title)}</h2><p class="article-card-summary">${escapeHtml(article.summary)}</p>
         <div class="article-card-bottom"><div class="tag-list">${tags}</div><span class="read-time">${minutes} 分钟</span></div>
       </a></article>`;
@@ -70,7 +76,8 @@ for (const [position, article] of articles.entries()) {
   const previous = articles[position + 1];
   const next = articles[position - 1];
   const canonical = `${siteUrl}${articlePath(article.slug)}`;
-  const readMinutes = Math.max(1, Math.ceil(article.content.join(' ').length / 400));
+  const readMinutes = readingTime(article.content);
+  const updatedAt = article.updatedAt && article.updatedAt > article.date ? article.updatedAt : '';
   const tags = article.tags.map((tag) => `<span>#${escapeHtml(tag)}</span>`).join('');
   const paragraphs = article.content.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join('\n      ');
   const neighbors = [
@@ -83,6 +90,7 @@ for (const [position, article] of articles.entries()) {
     headline: article.title,
     description: article.summary,
     datePublished: article.date,
+    dateModified: updatedAt || article.date,
     author: { '@type': 'Person', name: 'Yehack' },
     mainEntityOfPage: canonical
   };
@@ -95,7 +103,7 @@ for (const [position, article] of articles.entries()) {
   <link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/article.css">
   <title>${escapeHtml(article.title)} — Yehack</title>
   <script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>
-  <script src="/js/site.js" defer></script><script src="/js/reader.js" defer></script>
+  <script src="/js/site.js?v=20261006-1" defer></script><script src="/js/reader.js" defer></script>
 </head>
 <body data-page="articles" class="reader-page">
   <div class="ambient-background" aria-hidden="true"></div><span class="style-announcement" aria-live="polite" data-style-announcement></span>
@@ -105,7 +113,7 @@ for (const [position, article] of articles.entries()) {
     <a class="back-link" href="/articles/">← 返回文章归档</a>
     <article class="article-reader">
       <header><p class="eyebrow">${escapeHtml(article.category)}</p><h1>${escapeHtml(article.title)}</h1><p class="article-summary">${escapeHtml(article.summary)}</p>
-        <div class="article-meta"><time datetime="${escapeHtml(article.date)}">${dateText(article.date)}</time><span>${readMinutes} 分钟阅读</span>${tags}</div>
+        <div class="article-meta"><span>发表于 <time datetime="${escapeHtml(article.date)}">${dateText(article.date)}</time></span>${updatedAt ? `<span>更新于 <time datetime="${escapeHtml(updatedAt)}">${dateText(updatedAt)}</time></span>` : ''}<span>${readMinutes} 分钟阅读</span>${tags}</div>
       </header>
       <div class="article-reader-body">
       ${paragraphs}

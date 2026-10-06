@@ -16,6 +16,7 @@
 .article-card-link { display: flex; height: 100%; flex: 1; flex-direction: column; color: var(--ink); }
 .article-card-link { display: flex; height: 100%; flex: 1; flex-direction: column; color: var(--ink); }
 .article-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--faint); font: 12px var(--mono); }
+.article-card-top time { text-align: right; }
 .article-card-category { color: var(--accent); }
 .article-card h2 { margin: 24px 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -.04em; line-height: 1.45; }
 .article-card-summary { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }

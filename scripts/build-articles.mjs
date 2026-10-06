@@ -100,14 +100,14 @@ for (const [position, article] of articles.entries()) {
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10120f">
   <meta name="description" content="${escapeHtml(article.summary)}">
   <link rel="canonical" href="${canonical}"><link rel="icon" href="/assets/brand/yehack.png"><link rel="alternate" type="application/rss+xml" title="Yehack Journal" href="/feed.xml">
-  <link rel="stylesheet" href="/css/site.css"><link rel="stylesheet" href="/css/article.css">
+  <link rel="stylesheet" href="/css/site.css?v=20261006-13"><link rel="stylesheet" href="/css/article.css">
   <title>${escapeHtml(article.title)} — Yehack</title>
   <script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>
-  <script src="/js/site.js?v=20261006-1" defer></script><script src="/js/reader.js" defer></script>
+  <script src="/js/site.js?v=20261006-13" defer></script><script src="/js/reader.js" defer></script>
 </head>
 <body data-page="articles" class="reader-page">
   <div class="ambient-background" aria-hidden="true"></div><span class="style-announcement" aria-live="polite" data-style-announcement></span>
-  <div class="reading-progress" data-progress></div><a class="skip-link" href="#main">跳到正文</a>
+  <div class="reading-progress" data-progress></div><button class="pixel-pet" type="button" data-pixel-pet aria-label="像素小宠物；点击让它弹飞"><img src="https://imgs.qiubiaoqing.com/qiubiaoqing/user_pre_up_imgs/680bc2ff24921rFs.gif" alt="" referrerpolicy="no-referrer"></button>
   ${header}
   <main id="main" class="reader-wrap">
     <a class="back-link" href="/articles/">← 返回文章归档</a>

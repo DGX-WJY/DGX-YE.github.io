@@ -102,6 +102,9 @@ for (const htmlPath of htmlPaths) {
   }
   assert(!html.includes('js/index.js') && !html.includes('view/'), `${htmlPath.slice(root.length + 1)} still references the old SPA`);
   assert(html.includes('src="/js/site.js?v='), `${htmlPath.slice(root.length + 1)} must use a versioned site script URL`);
+  assert(html.includes('data-pixel-pet'), `${htmlPath.slice(root.length + 1)} is missing the pixel pet`);
+  assert(html.includes('https://imgs.qiubiaoqing.com/qiubiaoqing/user_pre_up_imgs/680bc2ff24921rFs.gif'), `${htmlPath.slice(root.length + 1)} is missing the configured pixel pet image`);
+  assert(!html.includes('skip-link'), `${htmlPath.slice(root.length + 1)} still contains the removed skip-link`);
   if (!htmlPath.endsWith('article.html')) {
     assert(html.includes('class="ambient-background"'), `${htmlPath.slice(root.length + 1)} is missing its illustration background`);
     assert(html.includes('class="style-toggle"'), `${htmlPath.slice(root.length + 1)} is missing the style switch`);
@@ -110,6 +113,17 @@ for (const htmlPath of htmlPaths) {
 }
 
 const siteStyles = await readFile(resolve(root, 'css/site.css'), 'utf8');
+const siteScript = await readFile(resolve(root, 'js/site.js'), 'utf8');
+assert(siteStyles.includes('background: transparent; box-shadow: none'), 'pixel pet container must be transparent');
+assert(siteStyles.includes('pet-explosion-gif'), 'pixel pet explosion animation is missing');
+assert(siteScript.includes('284fb21615a447ebadbd831b290e419b.gif'), 'configured pixel pet explosion image is missing');
+assert(siteScript.includes('state.cornerAnchor = null;'), 'launching the pixel pet must release its corner bounds');
+assert(siteScript.includes('pointer.x <= state.x + petWidth') && siteScript.includes('pointer.y <= state.y + petHeight'), 'pixel pet mouse collision must match the visible container bounds');
+assert(siteScript.includes("'喵'.repeat(petMemory.meowLength)"), 'pixel pet meow text generation is missing');
+assert(siteScript.includes('meowTextRepeat.textContent = text') && siteStyles.includes('pet-meow-scroll'), 'long pixel pet messages must scroll without covering the counter');
+assert(siteStyles.includes('.pixel-pet.is-meow-above .pixel-pet-meow') && siteStyles.includes('.pixel-pet.is-meow-side-right .pixel-pet-meow') && siteStyles.includes('.pixel-pet-counter.is-side-left') && siteStyles.includes('.pixel-pet.is-meow-left:not(.is-meow-side)'), 'pixel pet message and counter must reposition away from each other and viewport edges');
+assert(siteScript.includes('function scheduleFrame()'), 'pixel pet animation loop must resume after tab visibility changes');
+assert(siteScript.includes('explosionUntil'), 'pixel pet explosion state must survive page navigation');
 styleIds.forEach((style) => assert(siteStyles.includes(`data-style="${style}"`), `css/site.css is missing the ${style} preset`));
 for (const background of backgrounds) {
   try {

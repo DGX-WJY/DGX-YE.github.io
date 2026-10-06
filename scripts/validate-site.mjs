@@ -54,16 +54,16 @@ for (const article of articlesFeed.articles) {
 const htmlPaths = [];
 const styleIds = ['default', 'sakura', 'paper', 'arcade', 'ocean'];
 const backgrounds = [
-  'night-train.png',
-  'Village-Galaxy.png',
-  'Earth-Temple.png',
-  'beautiful-1.png',
-  'beautiful-2.png',
-  'beautiful-3.png',
-  'beautiful-4.png',
-  'beautiful-5.png',
-  'beautiful-6.png',
-  'cyberpunk-1.png'
+  'night-train.webp',
+  'Village-Galaxy.webp',
+  'Earth-Temple.webp',
+  'beautiful-1.webp',
+  'beautiful-2.webp',
+  'beautiful-3.webp',
+  'beautiful-4.webp',
+  'beautiful-5.webp',
+  'beautiful-6.webp',
+  'cyberpunk-1.webp'
 ];
 async function collectHtml(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {

@@ -2,29 +2,29 @@
 .archive-controls, .catalog-controls { display: flex; gap: 10px; }
 .search-box { display: flex; min-height: 46px; flex: 1; align-items: center; gap: 11px; padding: 0 13px; border: 1px solid var(--line); background: var(--panel); color: var(--muted); }
 .search-box > span:first-child { font-size: 21px; }
-.search-box input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 12px; }
+.search-box input { width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: 15px; }
 .search-box input::placeholder { color: var(--faint); }
-.search-box kbd { color: var(--faint); font: 10px var(--mono); }
-.archive-controls select, .catalog-controls select { min-width: 150px; padding: 0 30px 0 12px; border: 1px solid var(--line); border-radius: 0; background: var(--panel); font-size: 11px; }
+.search-box kbd { color: var(--faint); font: 12px var(--mono); }
+.archive-controls select, .catalog-controls select { min-width: 150px; min-height: 46px; padding: 0 30px 0 12px; border: 1px solid var(--line); border-radius: 0; background: var(--panel); font-size: 14px; }
 .topic-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 24px; }
-.topic-chip { padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 10px; }
+.topic-chip { padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--muted); font-size: 13px; }
 .topic-chip:hover, .topic-chip[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
-.result-count { margin: 0 0 14px; color: var(--faint); font: 10px var(--mono); }
+.result-count { margin: 0 0 14px; color: var(--faint); font: 12px var(--mono); }
 .article-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .article-card { position: relative; display: flex; min-height: 245px; flex-direction: column; padding: 21px; border: 1px solid var(--line); background: var(--panel); transition: border-color .2s, transform .2s, background .2s; }
 .article-card:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--panel-hover); }
 .article-card-link { display: flex; height: 100%; flex: 1; flex-direction: column; color: var(--ink); }
 .article-card-link { display: flex; height: 100%; flex: 1; flex-direction: column; color: var(--ink); }
-.article-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--faint); font: 10px var(--mono); }
+.article-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--faint); font: 12px var(--mono); }
 .article-card-category { color: var(--accent); }
 .article-card h2 { margin: 24px 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -.04em; line-height: 1.45; }
-.article-card-summary { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.8; }
+.article-card-summary { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
 .article-card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 18px; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 5px; }
-.tag { padding: 3px 7px; border: 1px solid var(--line); color: var(--muted); font: 9px var(--mono); }
-.read-time { color: var(--faint); font: 9px var(--mono); white-space: nowrap; }
+.tag { padding: 4px 8px; border: 1px solid var(--line); color: var(--muted); font: 11px var(--mono); }
+.read-time { color: var(--faint); font: 11px var(--mono); white-space: nowrap; }
 .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 30px; }
-.pagination button { min-width: 36px; height: 36px; border: 1px solid var(--line); background: transparent; color: var(--muted); font: 11px var(--mono); }
+.pagination button { min-width: 40px; height: 40px; border: 1px solid var(--line); background: transparent; color: var(--muted); font: 13px var(--mono); }
 .pagination button:hover, .pagination button[aria-current="page"] { border-color: var(--accent); color: var(--accent); }
 .pagination button:disabled { cursor: default; opacity: .35; }
 @media (max-width: 640px) {

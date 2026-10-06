@@ -11,7 +11,8 @@
         "JavaScript",
         "异步",
         "原理"
-      ]
+      ],
+      "readingTimeMinutes": 1
     },
     {
       "slug": "css-grid-and-flexbox",
@@ -23,7 +24,8 @@
         "CSS",
         "布局",
         "前端"
-      ]
+      ],
+      "readingTimeMinutes": 1
     },
     {
       "slug": "improving-a-small-tool",
@@ -35,7 +37,8 @@
         "设计",
         "产品",
         "工具"
-      ]
+      ],
+      "readingTimeMinutes": 1
     },
     {
       "slug": "lightweight-docker-environment",
@@ -47,7 +50,8 @@
         "Docker",
         "工程",
         "开发"
-      ]
+      ],
+      "readingTimeMinutes": 1
     },
     {
       "slug": "writing-useful-code-comments",
@@ -59,7 +63,8 @@
         "写作",
         "工程",
         "协作"
-      ]
+      ],
+      "readingTimeMinutes": 1
     },
     {
       "slug": "learning-a-language-in-a-weekend",
@@ -71,7 +76,8 @@
         "学习",
         "随笔",
         "编程"
-      ]
+      ],
+      "readingTimeMinutes": 1
     }
   ]
 }

@@ -24,7 +24,7 @@ validateSlugs(articlesFeed.articles, 'articles');
 articlesFeed.articles.forEach((article) => {
   assert(typeof article.title === 'string' && article.title.length > 0, `article ${article.slug}: title is required`);
   assert(!Number.isNaN(Date.parse(article.date)), `article ${article.slug}: date must be valid`);
-  assert(typeof article.category === 'string', `article ${article.slug}: category is required`);
+  assert(typeof article.category === 'string' && article.category.trim().length > 0, `article ${article.slug}: category is required`);
   assert(typeof article.summary === 'string', `article ${article.slug}: summary is required`);
   assert(Array.isArray(article.tags) && article.tags.every((tag) => typeof tag === 'string'), `article ${article.slug}: tags must be strings`);
   assert(Array.isArray(article.content) && article.content.every((paragraph) => typeof paragraph === 'string'), `article ${article.slug}: content must be paragraphs`);
@@ -39,6 +39,15 @@ const archive = await readFile(resolve(root, 'articles/index.html'), 'utf8');
 const compactIndex = await readJson('data/articles-index.json');
 assert(compactIndex.articles.length === articlesFeed.articles.length, 'data/articles-index.json must be generated from every article');
 assert(compactIndex.articles.every((article) => !('content' in article)), 'the archive index must not contain full article bodies');
+for (const article of articlesFeed.articles) {
+  const indexedArticle = compactIndex.articles.find((item) => item.slug === article.slug);
+  const expectedReadingTime = Math.max(1, Math.ceil(article.content.join(' ').trim().length / 400));
+  assert(indexedArticle, `data/articles-index.json is missing ${article.slug}`);
+  if (indexedArticle) {
+    assert(indexedArticle.category === article.category, `data/articles-index.json has a stale category for ${article.slug}`);
+    assert(indexedArticle.readingTimeMinutes === expectedReadingTime, `data/articles-index.json has an invalid reading time for ${article.slug}; run node scripts/build-articles.mjs`);
+  }
+}
 for (const article of articlesFeed.articles) {
   const articleUrl = `https://www.yehack.com/articles/${article.slug}/`;
   assert(rss.includes(`<guid>${articleUrl}</guid>`), `feed.xml is missing ${article.slug}`);

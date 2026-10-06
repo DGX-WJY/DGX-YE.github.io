@@ -43,7 +43,10 @@ const footer = `<footer class="site-footer wrap"><a class="footer-brand" href="/
 
 const index = {
   updatedAt: feed.updatedAt || '',
-  articles: articles.map(({ content, ...metadata }) => metadata)
+  articles: articles.map(({ content, ...metadata }) => ({
+    ...metadata,
+    readingTimeMinutes: Math.max(1, Math.ceil(content.join(' ').trim().length / 400))
+  }))
 };
 await writeFile(resolve(root, 'data/articles-index.json'), `${JSON.stringify(index, null, 2)}\n`);
 

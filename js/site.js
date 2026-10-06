@@ -25,11 +25,18 @@
     'beautiful-6.webp',
     'cyberpunk-1.webp'
   ];
+  const cardStyles = [
+    { id: 'default', label: '简约卡片' },
+    { id: 'rounded', label: '柔和圆角' },
+    { id: 'framed', label: '强调边框' }
+  ];
   const root = document.documentElement;
   const themeColor = document.querySelector('meta[name="theme-color"]');
   const announcement = document.querySelector('[data-style-announcement]');
   const styleButton = document.querySelector('.style-toggle');
   const backgroundButton = document.querySelector('.background-toggle');
+  const savedCardStyle = safeStorageGet('yehack-card-style');
+  root.dataset.cardStyle = cardStyles.some((style) => style.id === savedCardStyle) ? savedCardStyle : 'default';
 
   function safeStorageGet(key) {
     try {
@@ -84,22 +91,31 @@
     const previous = safeStorageGet('yehack-background');
     let candidates = backgrounds.filter((image) => image !== previous);
     if (!candidates.length) candidates = backgrounds;
-    const chosen = forceNext
-      ? candidates[0]
-      : candidates[Math.floor(Math.random() * candidates.length)];
+    const chosen = forceNext ? candidates[0] : candidates[Math.floor(Math.random() * candidates.length)];
     root.style.setProperty('--ambient-image', `url("/assets/backgrounds/${chosen}")`);
     safeStorageSet('yehack-background', chosen);
     if (backgroundButton) {
-      const label = chosen.replace(/^(character|scene)-/, '').replace('.svg', '').replaceAll('-', ' ');
-      backgroundButton.title = `当前背景：${label} · 点击更换`;
-      backgroundButton.setAttribute('aria-label', `当前背景：${label}，点击更换背景`);
+      const label = chosen.replace(/\.(svg|png|webp)$/i, '').replaceAll('-', ' ');
+      const cardStyle = cardStyles.find((style) => style.id === root.dataset.cardStyle) || cardStyles[0];
+      backgroundButton.title = `当前背景：${label}；卡片：${cardStyle.label} · 点击同时更换`;
+      backgroundButton.setAttribute('aria-label', `当前背景：${label}，当前卡片样式：${cardStyle.label}，点击同时更换`);
     }
+  }
+
+  function changeCardStyle() {
+    const currentIndex = cardStyles.findIndex((style) => style.id === root.dataset.cardStyle);
+    const next = cardStyles[(currentIndex + 1) % cardStyles.length];
+    root.dataset.cardStyle = next.id;
+    safeStorageSet('yehack-card-style', next.id);
   }
 
   applyStyleAnnouncement();
   chooseBackground(false);
   if (styleButton) styleButton.addEventListener('click', changeStyle);
-  if (backgroundButton) backgroundButton.addEventListener('click', () => chooseBackground(true));
+  if (backgroundButton) backgroundButton.addEventListener('click', () => {
+    changeCardStyle();
+    chooseBackground(true);
+  });
 
   const menuButton = document.querySelector('.menu-toggle');
   const navigation = document.querySelector('.primary-nav');

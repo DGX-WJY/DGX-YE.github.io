@@ -33,8 +33,7 @@
     const bottom = node('div', 'article-card-bottom');
     const tags = node('div', 'tag-list');
     article.tags.forEach((tag) => tags.append(node('span', 'tag', tag)));
-    const readTime = Math.max(1, Math.ceil(article.content.join(' ').trim().length / 400));
-    bottom.append(tags, node('span', 'read-time', `${readTime} 分钟`));
+    bottom.append(tags, node('span', 'read-time', `${article.readingTimeMinutes || 1} 分钟`));
     const link = node('a', 'article-card-link');
     link.href = `/articles/${encodeURIComponent(article.slug)}/`;
     link.setAttribute('aria-label', `阅读文章：${article.title}`);
@@ -123,6 +122,14 @@
 
   function applyFeed(feed) {
     if (!feed || !Array.isArray(feed.articles)) throw new Error('文章目录格式无效');
+    feed.articles.forEach((article) => {
+      if (!article || typeof article.slug !== 'string' || typeof article.title !== 'string' ||
+          typeof article.date !== 'string' || Number.isNaN(Date.parse(article.date)) ||
+          typeof article.category !== 'string' || typeof article.summary !== 'string' ||
+          !Array.isArray(article.tags) || !article.tags.every((tag) => typeof tag === 'string')) {
+        throw new Error('文章目录包含无效条目');
+      }
+    });
     articles = feed.articles.slice().sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     updatedAt = typeof feed.updatedAt === 'string' ? feed.updatedAt : '未知';
     const selectedCategory = category.value;

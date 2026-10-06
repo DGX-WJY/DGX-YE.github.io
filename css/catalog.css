@@ -4,14 +4,14 @@
 .catalog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .catalog-card { position: relative; display: flex; min-height: 255px; flex-direction: column; padding: 20px; border: 1px solid var(--line); background: var(--panel); transition: border-color .2s, transform .2s, background .2s; }
 .catalog-card:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--panel-hover); }
-.catalog-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--faint); font: 9px var(--mono); }
+.catalog-card-top { display: flex; align-items: center; justify-content: space-between; color: var(--faint); font: 11px var(--mono); }
 .catalog-card-index { color: var(--accent); }
 .catalog-card h2 { margin: 24px 0 7px; font-size: 19px; font-weight: 600; letter-spacing: -.04em; }
-.catalog-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.8; }
+.catalog-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
 .catalog-card .tag-list { margin-top: auto; padding-top: 17px; }
-.catalog-link { margin-top: 14px; color: var(--accent); font-size: 10px; }
+.catalog-link { margin-top: 14px; color: var(--accent); font-size: 14px; }
 .catalog-note { display: flex; align-items: center; gap: 17px; margin-top: 36px; padding: 18px; border: 1px solid var(--line); }
-.catalog-note p { margin: 0; color: var(--muted); font-size: 12px; }
+.catalog-note p { margin: 0; color: var(--muted); font-size: 15px; }
 .catalog-note a { color: var(--accent); }
 .note-symbol { color: var(--warm); font-size: 25px; }
 @media (max-width: 850px) {

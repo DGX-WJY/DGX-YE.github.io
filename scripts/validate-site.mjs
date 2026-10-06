@@ -39,6 +39,7 @@ const archive = await readFile(resolve(root, 'articles/index.html'), 'utf8');
 const articleScript = await readFile(resolve(root, 'js/articles.js'), 'utf8');
 const compactIndex = await readJson('data/articles-index.json');
 assert(!/article\.content\.(?:join|map)\(/.test(articleScript), 'js/articles.js must not read article bodies from the compact archive index');
+assert(archive.includes('src="/js/articles.js?v='), 'articles/index.html must version the article script URL to invalidate stale browser caches');
 assert(compactIndex.articles.length === articlesFeed.articles.length, 'data/articles-index.json must be generated from every article');
 assert(compactIndex.articles.every((article) => !('content' in article)), 'the archive index must not contain full article bodies');
 for (const article of articlesFeed.articles) {
